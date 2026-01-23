@@ -45,14 +45,23 @@ export default function MagikarpSpawner() {
         // Vérifier si on doit spawner basé sur le spawn rate
         if (Math.random() > spawnRate) {
           // Relancer immédiatement un nouvel essai
-          const nextSpawnDelay = 1000 + Math.random() * 666;
+          const nextSpawnDelay = 500 + Math.random() * 1500 + Math.random() * 500;
           if (intervalRef.current) clearTimeout(intervalRef.current);
           intervalRef.current = setTimeout(spawnMagikarp, nextSpawnDelay) as any;
           return currentList;
         }
 
-        // Déterminer la scale d'abord
-        const scale = 1 + Math.random();
+        // Générer tous les random numbers en même temps dans un ordre mélangé
+        const rnd1 = Math.random();
+        const rnd2 = Math.random();
+        const rnd3 = Math.random();
+        const rnd4 = Math.random();
+        const rnd5 = Math.random();
+        const rnd6 = Math.random();
+        const rnd7 = Math.random();
+        
+        // Déterminer la scale avec rnd1
+        const scale = 1 + rnd1 * 0.8 + Math.random() * 0.2; // Plus aléatoire
         
         // Calculer le top minimum basé sur la scale pour éviter le clipping
         // Une scale de 2 signifie la moitié de la hauteur, donc top min = (scale - 1) * 50
@@ -63,26 +72,26 @@ export default function MagikarpSpawner() {
         // Vérifier si on peut spawner sans clipping
         if (minTopRequired > maxTopRequired) {
           // Ne pas spawner si ça serait complètement coupé
-          const nextSpawnDelay = 1000 + Math.random() * 666;
+          const nextSpawnDelay = 500 + Math.random() * 1500 + Math.random() * 500;
           if (intervalRef.current) clearTimeout(intervalRef.current);
           intervalRef.current = setTimeout(spawnMagikarp, nextSpawnDelay) as any;
           return currentList;
         }
         
-        // Spawner entre le top minimum et le top maximum sans clipping
-        const initialTop = minTopRequired + Math.random() * (maxTopRequired - minTopRequired);
+        // Spawner entre le top minimum et le top maximum sans clipping (avec rnd2)
+        const initialTop = minTopRequired + rnd2 * (maxTopRequired - minTopRequired) + Math.random() * 5;
 
         const newMagikarp: Magikarp = {
-          id: Math.random().toString(36) + Date.now().toString(36),
+          id: Math.random().toString(36) + Date.now().toString(36) + Math.random().toString(36),
           top: initialTop,
-          direction: Math.random() > 0.5 ? 'left' : 'right',
+          direction: rnd3 > 0.5 ? 'left' : 'right', // Utiliser rnd3
           duration: 25, // Durée fixe longue pour traverser l'écran complètement
-          isShiny: Math.random() < 0.05, // 5% de chance d'être shiny
+          isShiny: rnd4 < 0.05 || rnd5 < 0.02 || rnd6 < 0.01, // Plus de variance pour shiny
           scale: scale,
         };
 
-        // Spawner le prochain avec un délai aléatoire - divisé par 3 (1-1.67 secondes)
-        const nextSpawnDelay = 1000 + Math.random() * 666;
+        // Spawner le prochain avec un délai aléatoire - avec rnd7
+        const nextSpawnDelay = 800 + rnd7 * 900 + Math.random() * 300;
         if (intervalRef.current) clearTimeout(intervalRef.current);
         intervalRef.current = setTimeout(spawnMagikarp, nextSpawnDelay) as any;
 
