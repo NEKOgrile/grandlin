@@ -13,8 +13,8 @@ export default function HeroSection({ scrollDepth }: HeroSectionProps) {
         className="absolute inset-0 transition-opacity duration-700"
         style={{ opacity }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-[#7ED7F6] via-[#1E81B0] to-[#0B3C5D]" />
-        <div className="absolute bottom-0 w-full h-48 bg-gradient-to-t from-[#1E81B0]/50 to-transparent animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#7ED7F6] via-[#4D9FBF] to-[#3C8CB4]" />
+        <div className="absolute bottom-0 w-full h-48 bg-gradient-to-t from-[#3C8CB4]/50 to-transparent animate-pulse" />
       </div>
 
       <div

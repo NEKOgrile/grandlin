@@ -24,31 +24,32 @@ function App() {
   }, []);
 
   const getBackgroundColor = () => {
-    if (scrollDepth < 12) {
-      return `rgb(126, 215, 246)`;
-    } else if (scrollDepth < 20) {
-      const progress = (scrollDepth - 12) / 8;
-      return `rgb(${126 - progress * 46}, ${215 - progress * 64}, ${246 - progress * 56})`;
-    } else if (scrollDepth < 35) {
-      const progress = (scrollDepth - 20) / 15;
-      return `rgb(${80 - progress * 40}, ${151 - progress * 51}, ${190 - progress * 50})`;
-    } else if (scrollDepth < 50) {
-      const progress = (scrollDepth - 35) / 15;
-      return `rgb(${40 - progress * 15}, ${100 - progress * 30}, ${140 - progress * 40})`;
-    } else if (scrollDepth < 70) {
-      const progress = (scrollDepth - 50) / 20;
-      return `rgb(${25 - progress * 10}, ${70 - progress * 20}, ${100 - progress * 30})`;
+    if (scrollDepth < 15) {
+      const progress = scrollDepth / 15;
+      return `rgb(${126 - progress * 66}, ${215 - progress * 75}, ${246 - progress * 66})`;
+    } else if (scrollDepth < 30) {
+      const progress = (scrollDepth - 15) / 15;
+      return `rgb(${60 - progress * 25}, ${140 - progress * 40}, ${180 - progress * 50})`;
+    } else if (scrollDepth < 45) {
+      const progress = (scrollDepth - 30) / 15;
+      return `rgb(${35 - progress * 15}, ${100 - progress * 35}, ${130 - progress * 45})`;
+    } else if (scrollDepth < 60) {
+      const progress = (scrollDepth - 45) / 15;
+      return `rgb(${20 - progress * 8}, ${65 - progress * 25}, ${85 - progress * 30})`;
+    } else if (scrollDepth < 75) {
+      const progress = (scrollDepth - 60) / 15;
+      return `rgb(${12 - progress * 4}, ${40 - progress * 15}, ${55 - progress * 17})`;
     } else if (scrollDepth < 90) {
-      const progress = (scrollDepth - 70) / 20;
-      return `rgb(${15 - progress * 5}, ${50 - progress * 15}, ${70 - progress * 20})`;
+      const progress = (scrollDepth - 75) / 15;
+      return `rgb(${8 - progress * 2}, ${25 - progress * 10}, ${38 - progress * 13})`;
     } else {
-      return `rgb(10, 35, 50)`;
+      return `rgb(6, 15, 25)`;
     }
   };
 
   return (
     <div
-      className="min-h-screen transition-colors duration-1000 ease-in-out"
+      className="min-h-screen transition-colors duration-[1500ms] ease-in-out"
       style={{ backgroundColor: getBackgroundColor() }}
     >
       <HeroSection scrollDepth={scrollDepth} />

@@ -24,9 +24,9 @@ export default function MagicSection() {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-[#0B3C5D]/40 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/15 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105"
+              className="group bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/15 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105"
             >
-              <div className="bg-[#051923]/60 rounded-lg h-48 mb-4 flex items-center justify-center">
+              <div className="bg-black/25 rounded-lg h-48 mb-4 flex items-center justify-center">
                 <Wand2 className="w-16 h-16 text-[#26C6DA]/60 group-hover:text-[#26C6DA] transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">

@@ -2,7 +2,7 @@ import { Phone, MapPin, Clock } from 'lucide-react';
 
 export default function ContactSection() {
   return (
-    <section className="relative py-20 px-6 bg-gradient-to-b from-transparent to-[#051923]">
+    <section className="relative py-20 px-6">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-[#F5F9FC] mb-4">
           Fond de l'Océan
