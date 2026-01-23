@@ -11,7 +11,7 @@ export default function LeagueSection() {
     <section className="relative py-16 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <Swords className="w-12 h-12 text-[#F2C94C] mx-auto mb-3" />
+          <Swords className="w-12 h-12 text-[#80DEEA] mx-auto mb-3" />
           <h2 className="text-4xl md:text-5xl font-bold text-[#F5F9FC] mb-3">
             Les Abysses
           </h2>
@@ -24,10 +24,10 @@ export default function LeagueSection() {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-[#051923]/60 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/5 hover:border-[#F2C94C]/80 transition-all duration-500 hover:scale-105"
+              className="group bg-[#051923]/60 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/5 hover:border-[#80DEEA]/80 transition-all duration-500 hover:scale-105"
             >
               <div className="bg-[#0B3C5D]/30 rounded-lg h-48 mb-4 flex items-center justify-center">
-                <Swords className="w-16 h-16 text-[#F2C94C]/40 group-hover:text-[#F2C94C] transition-colors duration-300" />
+                <Swords className="w-16 h-16 text-[#80DEEA]/40 group-hover:text-[#80DEEA] transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">
                 {card.name}

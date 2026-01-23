@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import HeroSection from './components/HeroSection';
 import PokemonSection from './components/PokemonSection';
-import MagicOnePieceSection from './components/MagicOnePieceSection';
-import LorcanaDragonBallSection from './components/LorcanaDragonBallSection';
+import MagicSection from './components/MagicSection';
+import OnePieceSection from './components/OnePieceSection';
+import LorcanaSection from './components/LorcanaSection';
+import DragonBallSection from './components/DragonBallSection';
 import LeagueSection from './components/LeagueSection';
 import ContactSection from './components/ContactSection';
 
@@ -22,19 +24,25 @@ function App() {
   }, []);
 
   const getBackgroundColor = () => {
-    if (scrollDepth < 15) {
+    if (scrollDepth < 12) {
       return `rgb(126, 215, 246)`;
-    } else if (scrollDepth < 30) {
-      const progress = (scrollDepth - 15) / 15;
-      return `rgb(${126 - progress * 96}, ${215 - progress * 134}, ${246 - progress * 70})`;
+    } else if (scrollDepth < 20) {
+      const progress = (scrollDepth - 12) / 8;
+      return `rgb(${126 - progress * 46}, ${215 - progress * 64}, ${246 - progress * 56})`;
+    } else if (scrollDepth < 35) {
+      const progress = (scrollDepth - 20) / 15;
+      return `rgb(${80 - progress * 40}, ${151 - progress * 51}, ${190 - progress * 50})`;
     } else if (scrollDepth < 50) {
-      const progress = (scrollDepth - 30) / 20;
-      return `rgb(${30 - progress * 19}, ${81 - progress * 21}, ${176 - progress * 83})`;
-    } else if (scrollDepth < 80) {
-      const progress = (scrollDepth - 50) / 30;
-      return `rgb(${11 - progress * 6}, ${60 - progress * 35}, ${93 - progress * 68})`;
+      const progress = (scrollDepth - 35) / 15;
+      return `rgb(${40 - progress * 15}, ${100 - progress * 30}, ${140 - progress * 40})`;
+    } else if (scrollDepth < 70) {
+      const progress = (scrollDepth - 50) / 20;
+      return `rgb(${25 - progress * 10}, ${70 - progress * 20}, ${100 - progress * 30})`;
+    } else if (scrollDepth < 90) {
+      const progress = (scrollDepth - 70) / 20;
+      return `rgb(${15 - progress * 5}, ${50 - progress * 15}, ${70 - progress * 20})`;
     } else {
-      return `rgb(5, 25, 35)`;
+      return `rgb(10, 35, 50)`;
     }
   };
 
@@ -45,8 +53,10 @@ function App() {
     >
       <HeroSection scrollDepth={scrollDepth} />
       <PokemonSection />
-      <MagicOnePieceSection />
-      <LorcanaDragonBallSection />
+      <MagicSection />
+      <OnePieceSection />
+      <LorcanaSection />
+      <DragonBallSection />
       <LeagueSection />
       <ContactSection />
     </div>
