@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import HeroSection from './components/HeroSection';
+import { Waves } from 'lucide-react';
 import PokemonSection from './components/PokemonSection';
 import MagicSection from './components/MagicSection';
 import OnePieceSection from './components/OnePieceSection';
@@ -25,33 +25,85 @@ function App() {
 
   const getBackgroundColor = () => {
     if (scrollDepth < 12) {
-      return `rgb(126, 215, 246)`;
-    } else if (scrollDepth < 20) {
-      const progress = (scrollDepth - 12) / 8;
-      return `rgb(${126 - progress * 46}, ${215 - progress * 64}, ${246 - progress * 56})`;
-    } else if (scrollDepth < 35) {
-      const progress = (scrollDepth - 20) / 15;
-      return `rgb(${80 - progress * 40}, ${151 - progress * 51}, ${190 - progress * 50})`;
-    } else if (scrollDepth < 50) {
-      const progress = (scrollDepth - 35) / 15;
-      return `rgb(${40 - progress * 15}, ${100 - progress * 30}, ${140 - progress * 40})`;
-    } else if (scrollDepth < 70) {
-      const progress = (scrollDepth - 50) / 20;
-      return `rgb(${25 - progress * 10}, ${70 - progress * 20}, ${100 - progress * 30})`;
-    } else if (scrollDepth < 90) {
-      const progress = (scrollDepth - 70) / 20;
-      return `rgb(${15 - progress * 5}, ${50 - progress * 15}, ${70 - progress * 20})`;
+      return `rgb(80, 151, 190)`;
+    } else if (scrollDepth < 25) {
+      const progress = (scrollDepth - 12) / 13;
+      return `rgb(${80 - progress * 30}, ${151 - progress * 41}, ${190 - progress * 50})`;
+    } else if (scrollDepth < 45) {
+      const progress = (scrollDepth - 25) / 20;
+      return `rgb(${50 - progress * 25}, ${110 - progress * 35}, ${140 - progress * 45})`;
+    } else if (scrollDepth < 65) {
+      const progress = (scrollDepth - 45) / 20;
+      return `rgb(${25 - progress * 12}, ${75 - progress * 25}, ${95 - progress * 30})`;
     } else {
-      return `rgb(10, 35, 50)`;
+      const progress = Math.min((scrollDepth - 65) / 35, 1);
+      return `rgb(${13 - progress * 3}, ${50 - progress * 15}, ${65 - progress * 15})`;
     }
   };
 
   return (
     <div
-      className="min-h-screen transition-colors duration-1000 ease-in-out"
+      className="min-h-screen transition-colors duration-1000 ease-in-out relative"
       style={{ backgroundColor: getBackgroundColor() }}
     >
-      <HeroSection scrollDepth={scrollDepth} />
+      {/* Bulles flottantes partout */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {[...Array(60)].map((_, i) => {
+          // Distribution: 40% en haut (0-40%), 30% au milieu (40-70%), 30% plus bas (70-100%)
+          const rand = Math.random();
+          let topPosition;
+          
+          if (rand < 0.4) {
+            topPosition = Math.random() * 40; // 0-40%
+          } else if (rand < 0.7) {
+            topPosition = 40 + Math.random() * 30; // 40-70%
+          } else {
+            topPosition = 70 + Math.random() * 30; // 70-100%
+          }
+          
+          const size = Math.random() * 25 + 5; // 5-30px
+          const duration = Math.random() * 40 + 40; // 40-80s pour une montée très lente et constante
+          
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white/20 animate-float"
+              style={{
+                width: size + 'px',
+                height: size + 'px',
+                left: Math.random() * 100 + '%',
+                top: topPosition + '%',
+                animationDelay: Math.random() * 5 + 's',
+                animationDuration: duration + 's',
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Contenu du héro intégré */}
+      <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        <div className="relative z-10 text-center px-6">
+          <img
+            src="/image.png"
+            alt="GRANDLINE"
+            className="w-full max-w-3xl mx-auto mb-6 drop-shadow-2xl"
+          />
+
+          <h1 className="text-4xl md:text-6xl font-bold text-[#F5F9FC] mb-4 drop-shadow-lg">
+            Plongez dans l'univers des cartes à collectionner
+          </h1>
+
+          <p className="text-xl md:text-2xl text-[#F5F9FC]/90 font-light max-w-3xl mx-auto">
+            Pokémon, Magic, One Piece, Lorcana, Dragon Ball et plus encore
+          </p>
+
+          <div className="mt-12 animate-bounce">
+            <Waves className="w-12 h-12 text-[#F5F9FC]/70 mx-auto" />
+          </div>
+        </div>
+      </section>
+
       <PokemonSection />
       <MagicSection />
       <OnePieceSection />
