@@ -47,33 +47,36 @@ function App() {
       style={{ backgroundColor: getBackgroundColor() }}
     >
       {/* Bulles flottantes partout */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {[...Array(60)].map((_, i) => {
           // Distribution: 40% en haut (0-40%), 30% au milieu (40-70%), 30% plus bas (70-100%)
-          const rand = Math.random();
+          const seed = i;
+          const rand = (Math.sin(seed * 12.9898) * 43758.5453) % 1;
           let topPosition;
           
           if (rand < 0.4) {
-            topPosition = Math.random() * 40; // 0-40%
+            topPosition = ((Math.sin(seed * 78.233) * 43758.5453) % 1) * 40; // 0-40%
           } else if (rand < 0.7) {
-            topPosition = 40 + Math.random() * 30; // 40-70%
+            topPosition = 40 + ((Math.sin(seed * 45.164) * 43758.5453) % 1) * 30; // 40-70%
           } else {
-            topPosition = 70 + Math.random() * 30; // 70-100%
+            topPosition = 70 + ((Math.sin(seed * 94.673) * 43758.5453) % 1) * 30; // 70-100%
           }
           
-          const size = Math.random() * 25 + 5; // 5-30px
-          const duration = Math.random() * 40 + 40; // 40-80s pour une montée très lente et constante
+          const size = ((Math.sin(seed * 23.456) * 43758.5453) % 1) * 25 + 5; // 5-30px
+          const duration = ((Math.sin(seed * 56.789) * 43758.5453) % 1) * 40 + 40; // 40-80s
+          const delay = ((Math.sin(seed * 34.012) * 43758.5453) % 1) * 5; // 0-5s
+          const left = ((Math.sin(seed * 67.345) * 43758.5453) % 1) * 100; // 0-100%
           
           return (
             <div
-              key={i}
-              className="absolute rounded-full bg-white/20 animate-float"
+              key={`bubble-${i}`}
+              className="absolute rounded-full bg-white/20 animate-float pointer-events-none"
               style={{
                 width: size + 'px',
                 height: size + 'px',
-                left: Math.random() * 100 + '%',
+                left: left + '%',
                 top: topPosition + '%',
-                animationDelay: Math.random() * 5 + 's',
+                animationDelay: delay + 's',
                 animationDuration: duration + 's',
               }}
             />
