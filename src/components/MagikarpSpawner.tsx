@@ -19,21 +19,31 @@ export default function MagikarpSpawner() {
       setMagikarpList((currentList) => {
         // Si moins de 10 Magikarp, en spawn une nouvelle
         if (currentList.length < 10) {
-          // Générer les paramètres COMPLÈTEMENT aléatoires à chaque appel
-          const scale = 1 + Math.random() * 0.9;
+          // Générer BEAUCOUP de random pour éviter les patterns
+          const rand1 = Math.random();
+          const rand2 = Math.random();
+          const rand3 = Math.random();
+          const rand4 = Math.random();
+          const rand5 = Math.random();
+          const rand6 = Math.random();
+          const rand7 = Math.random();
+          const rand8 = Math.random();
+          
+          const scale = 1 + rand1 * 0.9;
           const minTopRequired = (scale - 1) * 50;
           const maxTopRequired = 100 - (scale - 1) * 50;
           
           // Si on peut spawner sans clipping
           if (minTopRequired <= maxTopRequired) {
-            const initialTop = minTopRequired + Math.random() * (maxTopRequired - minTopRequired);
+            // Mélanger l'ordre d'utilisation des rands
+            const initialTop = minTopRequired + rand3 * (maxTopRequired - minTopRequired);
             
             const newMagikarp: Magikarp = {
-              id: Date.now().toString(36) + Math.random().toString(36) + Math.random().toString(36),
+              id: `mag-${Date.now()}-${rand2}-${rand4}-${rand6}-${Math.floor(Math.random() * 999999)}`,
               top: initialTop,
-              direction: Math.random() > 0.5 ? 'left' : 'right',
+              direction: rand5 > 0.5 ? 'left' : 'right',
               duration: 25,
-              isShiny: Math.random() < 0.05,
+              isShiny: rand7 < 0.05,
               scale: scale,
             };
 
