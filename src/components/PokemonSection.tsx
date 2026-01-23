@@ -1,5 +1,4 @@
 import { Sparkles } from 'lucide-react';
-import MagikarpSpawner from './MagikarpSpawner';
 
 export default function PokemonSection() {
   const cards = [
@@ -11,7 +10,6 @@ export default function PokemonSection() {
 
   return (
     <section className="relative py-16 px-6">
-      <MagikarpSpawner />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <Sparkles className="w-12 h-12 text-[#4DD0E1] mx-auto mb-3" />
