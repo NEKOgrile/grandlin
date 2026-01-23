@@ -46,6 +46,15 @@ export default function MagikarpSpawner() {
             };
 
             console.log(`➕ Spawn: ${isShiny ? '✨ Shiny' : 'Normal'} vers ${direction}`);
+            
+            // Supprimer après la durée de l'animation + 1 seconde pour être sûr
+            setTimeout(() => {
+              setMagikarpList((prev) => {
+                const filtered = prev.filter((m) => m.id !== uniqueId);
+                console.log(`❌ Removed: ${uniqueId}, restantes: ${filtered.length}`);
+                return filtered;
+              });
+            }, (25 + 1) * 1000);
 
             return [...currentList, newMagikarp];
           }
@@ -91,9 +100,6 @@ export default function MagikarpSpawner() {
               transform: `translateY(-50%) scale(${magikarp.scale})`,
               transformOrigin: 'left center',
               animationDuration: magikarp.duration + 's',
-            }}
-            onAnimationEnd={() => {
-              setMagikarpList((prev) => prev.filter((m) => m.id !== magikarp.id));
             }}
           >
             <img
