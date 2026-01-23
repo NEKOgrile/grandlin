@@ -7,6 +7,7 @@ import LorcanaSection from './components/LorcanaSection';
 import DragonBallSection from './components/DragonBallSection';
 import LeagueSection from './components/LeagueSection';
 import ContactSection from './components/ContactSection';
+import BubbleSpawner from './components/BubbleSpawner';
 
 function App() {
   const [scrollDepth, setScrollDepth] = useState(0);
@@ -46,43 +47,8 @@ function App() {
       className="min-h-screen transition-colors duration-1000 ease-in-out relative"
       style={{ backgroundColor: getBackgroundColor() }}
     >
-      {/* Bulles flottantes partout */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {[...Array(64)].map((_, i) => {
-          // Distribution: 40% en haut (0-40%), 30% au milieu (40-70%), 30% plus bas (70-100%)
-          const seed = i;
-          const rand = (Math.sin(seed * 12.9898) * 43758.5453) % 1;
-          let topPosition;
-          
-          if (rand < 0.4) {
-            topPosition = ((Math.sin(seed * 78.233) * 43758.5453) % 1) * 40; // 0-40%
-          } else if (rand < 0.7) {
-            topPosition = 40 + ((Math.sin(seed * 45.164) * 43758.5453) % 1) * 30; // 40-70%
-          } else {
-            topPosition = 70 + ((Math.sin(seed * 94.673) * 43758.5453) % 1) * 30; // 70-100%
-          }
-          
-          const size = ((Math.sin(seed * 23.456) * 43758.5453) % 1) * 25 + 5; // 5-30px
-          const duration = 40; // Durée fixe plus rapide
-          const delay = ((Math.sin(seed * 34.012) * 43758.5453) % 1) * 5; // 0-5s
-          const left = ((Math.sin(seed * 67.345) * 43758.5453) % 1) * 100; // 0-100%
-          
-          return (
-            <div
-              key={`bubble-${i}`}
-              className="absolute rounded-full bg-white/20 animate-float pointer-events-none"
-              style={{
-                width: size + 'px',
-                height: size + 'px',
-                left: left + '%',
-                top: topPosition + '%',
-                animationDelay: delay + 's',
-                animationDuration: duration + 's',
-              }}
-            />
-          );
-        })}
-      </div>
+      {/* Bulles flottantes attachées au contenu */}
+      <BubbleSpawner />
 
       {/* Contenu du héro intégré */}
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
