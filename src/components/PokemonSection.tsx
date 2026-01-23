@@ -25,9 +25,9 @@ export default function PokemonSection() {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-black/15 backdrop-blur-sm rounded-2xl p-5 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20"
+              className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-5 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20"
             >
-              <div className="bg-black/20 rounded-xl h-48 mb-4 flex items-center justify-center">
+              <div className="bg-[#0B3C5D]/50 rounded-xl h-48 mb-4 flex items-center justify-center">
                 <Sparkles className="w-16 h-16 text-[#4DD0E1]/70 group-hover:text-[#4DD0E1] transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">
