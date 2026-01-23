@@ -35,7 +35,7 @@ export default function MagikarpSpawner() {
       // Vérifier si on doit spawner basé sur le spawn rate
       if (Math.random() > spawnRate) {
         // Relancer immédiatement un nouvel essai
-        const nextSpawnDelay = 1000 + Math.random() * 1000; // Pas de division par spawnRate
+        const nextSpawnDelay = 3000 + Math.random() * 2000;
         if (intervalRef.current) clearTimeout(intervalRef.current);
         intervalRef.current = setTimeout(spawnMagikarp, nextSpawnDelay) as any;
         return;
@@ -53,7 +53,7 @@ export default function MagikarpSpawner() {
       // Vérifier si on peut spawner sans clipping
       if (minTopRequired > maxTopRequired) {
         // Ne pas spawner si ça serait complètement coupé
-        const nextSpawnDelay = 1000 + Math.random() * 1000;
+        const nextSpawnDelay = 3000 + Math.random() * 2000;
         if (intervalRef.current) clearTimeout(intervalRef.current);
         intervalRef.current = setTimeout(spawnMagikarp, nextSpawnDelay) as any;
         return;
@@ -72,15 +72,15 @@ export default function MagikarpSpawner() {
       };
 
       setMagikarpList((prev) => [...prev, newMagikarp]);
-
-      // Spawner le prochain avec un délai aléatoire
-      const nextSpawnDelay = 1000 + Math.random() * 1000;
+      
+      // Spawner le prochain avec un délai aléatoire - plus rare (3-5 secondes)
+      const nextSpawnDelay = 3000 + Math.random() * 2000;
       if (intervalRef.current) clearTimeout(intervalRef.current);
       intervalRef.current = setTimeout(spawnMagikarp, nextSpawnDelay) as any;
     };
 
     // Commencer le premier spawn
-    const initialDelay = 1000 + Math.random() * 1000;
+    const initialDelay = 3000 + Math.random() * 2000;
     if (intervalRef.current) clearTimeout(intervalRef.current);
     intervalRef.current = setTimeout(spawnMagikarp, initialDelay) as any;
 
