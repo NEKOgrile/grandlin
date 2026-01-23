@@ -65,16 +65,12 @@ export default function MagikarpSpawner() {
         id: Date.now() + Math.random().toString(),
         top: initialTop,
         direction: Math.random() > 0.5 ? 'left' : 'right',
-        duration: 8 + Math.random() * 6, // 8-14 secondes (comme avant)
+        duration: 25, // Durée fixe longue pour traverser l'écran complètement
         isShiny: Math.random() > 0.95,
         scale: scale,
       };
 
       setMagikarpList((prev) => [...prev, newMagikarp]);
-
-      setTimeout(() => {
-        setMagikarpList((prev) => prev.filter((m) => m.id !== newMagikarp.id));
-      }, newMagikarp.duration * 1000);
 
       // Spawner le prochain avec un délai aléatoire
       const nextSpawnDelay = 1000 + Math.random() * 1000;
@@ -123,6 +119,9 @@ export default function MagikarpSpawner() {
               transform: `translateY(-50%) scale(${magikarp.scale})`,
               transformOrigin: 'left center',
               animationDuration: magikarp.duration + 's',
+            }}
+            onAnimationEnd={() => {
+              setMagikarpList((prev) => prev.filter((m) => m.id !== magikarp.id));
             }}
           >
             <img
