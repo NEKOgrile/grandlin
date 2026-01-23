@@ -41,26 +41,33 @@ export default function MagikarpSpawner() {
         return;
       }
 
+      // Déterminer la scale d'abord
+      const scale = 1 + Math.random();
+      
+      // Calculer le top minimum basé sur la scale pour éviter le clipping
+      // Une scale de 2 signifie la moitié de la hauteur, donc top min = (scale - 1) * 50
+      const minTopRequired = (scale - 1) * 50;
+      const maxTopAvailable = 100;
+      
+      // Vérifier si on peut spawner sans clipping
+      if (minTopRequired > maxTopAvailable) {
+        // Ne pas spawner si ça serait complètement coupé
+        const nextSpawnDelay = 1000 + Math.random() * 1000;
+        if (intervalRef.current) clearTimeout(intervalRef.current);
+        intervalRef.current = setTimeout(spawnMagikarp, nextSpawnDelay) as any;
+        return;
+      }
+      
+      // Spawner entre le top minimum et 100%
+      const initialTop = minTopRequired + Math.random() * (maxTopAvailable - minTopRequired);
+
       const newMagikarp: Magikarp = {
         id: Date.now() + Math.random().toString(),
-        top: (() => {
-          let initialTop = Math.random() * 100 + (-20);
-          const scale = 1 + Math.random();
-          
-          // Si la scale est grande et le top est très négatif, ajuster vers le bas
-          // Chaque unité de scale augmente la hauteur, donc peut causer une coupure
-          const minTopNeeded = -(scale - 1) * 50; // Ajustement basé sur la scale
-          
-          if (initialTop < minTopNeeded) {
-            initialTop = Math.max(minTopNeeded, Math.random() * 60); // Spawner plus bas
-          }
-          
-          return initialTop;
-        })(),
+        top: initialTop,
         direction: Math.random() > 0.5 ? 'left' : 'right',
-        duration: 15 + Math.random() * 10, // 15-25 secondes (augmenté pour traverser complètement)
+        duration: 8 + Math.random() * 6, // 8-14 secondes (comme avant)
         isShiny: Math.random() > 0.95,
-        scale: 1 + Math.random(),
+        scale: scale,
       };
 
       setMagikarpList((prev) => [...prev, newMagikarp]);
@@ -100,9 +107,9 @@ export default function MagikarpSpawner() {
       }}
     >
       {magikarpList.map((magikarp) => {
-        const imageSrc = magikarp.isShiny
-          ? '/src/image/pokemon-magikarp-shiny.png'
-          : '/src/image/pokemon-magikarp.png';
+        const imageSrc = magikarp.isShiny 
+          ? '/pokemon-magikarp-shiny.png' 
+          : '/pokemon-magikarp.png';
         
         const animationClass = magikarp.direction === 'left' ? 'animate-move-left' : 'animate-move-right';
 
@@ -121,11 +128,12 @@ export default function MagikarpSpawner() {
             <img
               src={imageSrc}
               alt="Magikarp"
-              className="h-16 drop-shadow-lg"
               style={{
+                height: '64px',
+                width: 'auto',
+                display: 'block',
                 transform: magikarp.direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)',
-                backgroundColor: 'transparent',
-                imageRendering: 'pixelated',
+                filter: magikarp.isShiny ? 'brightness(1.3)' : 'brightness(1)',
               }}
             />
           </div>
