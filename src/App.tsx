@@ -48,7 +48,9 @@ function App() {
       style={{ backgroundColor: getBackgroundColor() }}
     >
       {/* Bulles flottantes attachées au contenu */}
-      <BubbleSpawner />
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <BubbleSpawner />
+      </div>
 
       {/* Contenu du héro intégré */}
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">

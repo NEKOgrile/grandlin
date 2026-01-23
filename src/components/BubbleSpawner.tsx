@@ -30,9 +30,13 @@ export default function BubbleSpawner() {
   // Spawn bubbles
   useEffect(() => {
     const spawnBubble = () => {
+      // Calculer la position maximale (50% du document)
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const maxSpawnPosition = (maxScroll * 0.5) / window.innerHeight; // En % de la hauteur visible
+
       // Ne spawner que jusqu'à 50% de profondeur
-      if (scrollDepth > 50) {
-        const nextDelay = 500 + Math.random() * 1000;
+      if (window.scrollY > maxScroll * 0.5) {
+        const nextDelay = 300 + Math.random() * 700;
         if (intervalRef.current) clearTimeout(intervalRef.current);
         intervalRef.current = setTimeout(spawnBubble, nextDelay) as any;
         return;
@@ -41,7 +45,7 @@ export default function BubbleSpawner() {
       setBubbleList((currentList) => {
         // Limiter à 20 bulles max
         if (currentList.length >= 20) {
-          const nextDelay = 500 + Math.random() * 1000;
+          const nextDelay = 300 + Math.random() * 700;
           if (intervalRef.current) clearTimeout(intervalRef.current);
           intervalRef.current = setTimeout(spawnBubble, nextDelay) as any;
           return currentList;
@@ -56,9 +60,13 @@ export default function BubbleSpawner() {
         const duration = durations[sizeIndex];
         const zIndex = zIndexes[sizeIndex];
 
+        // Spawner dans les 50% premiers du document
+        const maxSpawnPos = (document.documentElement.scrollHeight * 0.5);
+        const randomTop = Math.random() * maxSpawnPos;
+
         const newBubble: Bubble = {
           id: Math.random().toString(36) + Date.now().toString(36),
-          top: window.scrollY + Math.random() * window.innerHeight,
+          top: randomTop,
           left: Math.random() * 100,
           size: size,
           duration: duration,
@@ -70,7 +78,7 @@ export default function BubbleSpawner() {
           setBubbleList((prev) => prev.filter((b) => b.id !== newBubble.id));
         }, (duration + 2) * 1000);
 
-        const nextDelay = 500 + Math.random() * 1000;
+        const nextDelay = 300 + Math.random() * 700;
         if (intervalRef.current) clearTimeout(intervalRef.current);
         intervalRef.current = setTimeout(spawnBubble, nextDelay) as any;
 
@@ -78,21 +86,21 @@ export default function BubbleSpawner() {
       });
     };
 
-    const initialDelay = 500 + Math.random() * 1000;
+    const initialDelay = 300 + Math.random() * 700;
     if (intervalRef.current) clearTimeout(intervalRef.current);
     intervalRef.current = setTimeout(spawnBubble, initialDelay) as any;
 
     return () => {
       if (intervalRef.current) clearTimeout(intervalRef.current);
     };
-  }, [scrollDepth]);
+  }, []);
 
   return (
     <>
       {bubbleList.map((bubble) => (
         <div
           key={bubble.id}
-          className="fixed rounded-full bg-white/20 pointer-events-none"
+          className="absolute rounded-full bg-white/20 pointer-events-none"
           style={{
             width: bubble.size + 'px',
             height: bubble.size + 'px',
