@@ -17,35 +17,35 @@ export default function MagikarpSpawner() {
     // Check toutes les secondes si on peut spawner
     const spawnChecker = setInterval(() => {
       setMagikarpList((currentList) => {
+        // Log le nombre de Magikarp à l'écran
+        console.log(`🐟 Magikarp à l'écran: ${currentList.length}/10`);
+        
         // Si moins de 10 Magikarp, en spawn une nouvelle
         if (currentList.length < 10) {
-          // Générer BEAUCOUP de random pour éviter les patterns
-          const rand1 = Math.random();
-          const rand2 = Math.random();
-          const rand3 = Math.random();
-          const rand4 = Math.random();
-          const rand5 = Math.random();
-          const rand6 = Math.random();
-          const rand7 = Math.random();
-          const rand8 = Math.random();
-          
-          const scale = 1 + rand1 * 0.9;
+          // Générer COMPLÈTEMENT du nouveau random à chaque fois
+          const scale = 1 + Math.random() * 0.9;
           const minTopRequired = (scale - 1) * 50;
           const maxTopRequired = 100 - (scale - 1) * 50;
           
           // Si on peut spawner sans clipping
           if (minTopRequired <= maxTopRequired) {
-            // Mélanger l'ordre d'utilisation des rands
-            const initialTop = minTopRequired + rand3 * (maxTopRequired - minTopRequired);
+            const initialTop = minTopRequired + Math.random() * (maxTopRequired - minTopRequired);
+            const isShiny = Math.random() < 0.05;
+            const direction = Math.random() > 0.5 ? 'left' : 'right';
+            
+            // Créer un ID unique avec beaucoup d'aléatoire
+            const uniqueId = `m${Date.now()}${Math.random().toString(36).substring(2, 15)}${Math.random().toString(36).substring(2, 15)}`;
             
             const newMagikarp: Magikarp = {
-              id: `mag-${Date.now()}-${rand2}-${rand4}-${rand6}-${Math.floor(Math.random() * 999999)}`,
+              id: uniqueId,
               top: initialTop,
-              direction: rand5 > 0.5 ? 'left' : 'right',
+              direction: direction,
               duration: 25,
-              isShiny: rand7 < 0.05,
+              isShiny: isShiny,
               scale: scale,
             };
+
+            console.log(`➕ Spawn: ${isShiny ? '✨ Shiny' : 'Normal'} vers ${direction}`);
 
             return [...currentList, newMagikarp];
           }
