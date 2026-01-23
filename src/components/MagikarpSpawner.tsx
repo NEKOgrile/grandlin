@@ -47,10 +47,11 @@ export default function MagikarpSpawner() {
       // Calculer le top minimum basé sur la scale pour éviter le clipping
       // Une scale de 2 signifie la moitié de la hauteur, donc top min = (scale - 1) * 50
       const minTopRequired = (scale - 1) * 50;
-      const maxTopAvailable = 100;
+      // Maximum top basé sur la scale pour éviter le clipping au bas
+      const maxTopRequired = 100 - (scale - 1) * 50;
       
       // Vérifier si on peut spawner sans clipping
-      if (minTopRequired > maxTopAvailable) {
+      if (minTopRequired > maxTopRequired) {
         // Ne pas spawner si ça serait complètement coupé
         const nextSpawnDelay = 1000 + Math.random() * 1000;
         if (intervalRef.current) clearTimeout(intervalRef.current);
@@ -58,8 +59,8 @@ export default function MagikarpSpawner() {
         return;
       }
       
-      // Spawner entre le top minimum et 100%
-      const initialTop = minTopRequired + Math.random() * (maxTopAvailable - minTopRequired);
+      // Spawner entre le top minimum et le top maximum sans clipping
+      const initialTop = minTopRequired + Math.random() * (maxTopRequired - minTopRequired);
 
       const newMagikarp: Magikarp = {
         id: Date.now() + Math.random().toString(),
