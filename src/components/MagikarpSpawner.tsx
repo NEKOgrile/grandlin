@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface Magikarp {
   id: string;
@@ -10,55 +10,85 @@ interface Magikarp {
 }
 
 export default function MagikarpSpawner() {
-  const [magikarp, setMagikarp] = useState<Magikarp | null>(null);
+  const [magikarpList, setMagikarpList] = useState<Magikarp[]>([]);
+  const timeoutRefsRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
 
-  // Générer une nouvelle Magikarp aléatoire
-  const generateNewMagikarp = () => {
+  // Générer une seule Magikarp aléatoire
+  const generateSingleMagikarp = (): Magikarp => {
     const scale = 1 + Math.random() * 0.9;
     const minTopRequired = (scale - 1) * 50;
-    const maxTopRequired = 100 - (scale - 1) * 50;
+    const maxTopRequired = Math.min(100 - (scale - 1) * 50, 100); // Limiter le maxTop à 100% pour éviter les débordements
     
-    // Vérifier qu'on peut spawner sans clipping
-    if (minTopRequired <= maxTopRequired) {
-      const top = minTopRequired + Math.random() * (maxTopRequired - minTopRequired);
-      const direction = Math.random() > 0.5 ? 'left' : 'right';
-      const duration = 15 + Math.random() * 15; // 15-30 secondes aléatoire
-      const isShiny = Math.random() < 0.05;
+    const top = minTopRequired + Math.random() * (maxTopRequired - minTopRequired);
+    const direction = Math.random() > 0.5 ? 'left' : 'right';
+    const duration = 15 + Math.random() * 15;
+    const isShiny = Math.random() < 0.01; // 1% de chance d'être shiny
 
-      const newMagikarp: Magikarp = {
-        id: `m${Date.now()}${Math.random().toString(36).substring(2, 15)}`,
-        top,
-        direction,
-        duration,
-        isShiny,
-        scale,
-      };
-
-      console.log(`
-╔════════════════════════════════════════╗
-║ ➕ NOUVEAU MAGIKARP SPAWNÉ             ║
-╠════════════════════════════════════════╣
-║ Position (Y): ${top.toFixed(2)}%
-║ Zone: ${top < 33.33 ? '🟦 HAUT' : top < 66.66 ? '🟩 MILIEU' : '🟥 BAS'}
-║ Direction: ${direction === 'left' ? '⬅️ GAUCHE' : '➡️ DROITE'}
-║ Type: ${isShiny ? '✨ SHINY' : '🔴 NORMAL'}
-║ Scale: ${scale.toFixed(2)}x
-║ Vitesse: ${duration.toFixed(1)}s
-╚════════════════════════════════════════╝
-      `);
-
-      setMagikarp(newMagikarp);
-    }
+    return {
+      id: `m${Date.now()}${Math.random().toString(36).substring(2, 15)}`,
+      top,
+      direction,
+      duration,
+      isShiny,
+      scale,
+    };
   };
 
-  // Générer la première Magikarp au mount
+  // Remplacer une Magikarp par une nouvelle
+  const replaceMagikarp = (oldId: string) => {
+    // Nettoyer le timeout de l'ancienne
+    const oldTimeout = timeoutRefsRef.current.get(oldId);
+    if (oldTimeout) clearTimeout(oldTimeout);
+    timeoutRefsRef.current.delete(oldId);
+
+    const newMagikarp = generateSingleMagikarp();
+
+    console.log(`
+╔════════════════════════════════════════╗
+║ ➕ MAGIKARP REMPLACÉE                  ║
+╠════════════════════════════════════════╣
+║ Position (Y): ${newMagikarp.top.toFixed(2)}%
+║ Zone: ${newMagikarp.top < 33.33 ? '🟦 HAUT' : newMagikarp.top < 66.66 ? '🟩 MILIEU' : '🟥 BAS'}
+║ Direction: ${newMagikarp.direction === 'left' ? '⬅️ GAUCHE' : '➡️ DROITE'}
+║ Type: ${newMagikarp.isShiny ? '✨ SHINY' : '🔴 NORMAL'}
+║ Scale: ${newMagikarp.scale.toFixed(2)}x
+║ Vitesse: ${newMagikarp.duration.toFixed(1)}s
+╚════════════════════════════════════════╝
+    `);
+
+    setMagikarpList(prev => prev.map(m => m.id === oldId ? newMagikarp : m));
+    
+    // Timeout fallback
+    const newTimeout = setTimeout(() => {
+      replaceMagikarp(newMagikarp.id);
+    }, (newMagikarp.duration + 0.5) * 1000);
+    
+    timeoutRefsRef.current.set(newMagikarp.id, newTimeout);
+  };
+
+  // Générer les 10 Magikarp au mount
   useEffect(() => {
-    generateNewMagikarp();
+    const initialList = Array.from({ length: 10 }, () => generateSingleMagikarp());
+    setMagikarpList(initialList);
+
+    // Créer les timeouts fallback pour chaque
+    initialList.forEach(magikarp => {
+      const timeout = setTimeout(() => {
+        replaceMagikarp(magikarp.id);
+      }, (magikarp.duration + 0.5) * 1000);
+      timeoutRefsRef.current.set(magikarp.id, timeout);
+    });
+
+    console.log('🐟 10 Magikarp générées au démarrage');
+    
+    return () => {
+      timeoutRefsRef.current.forEach(timeout => clearTimeout(timeout));
+      timeoutRefsRef.current.clear();
+    };
   }, []);
 
-  const handleAnimationEnd = () => {
-    console.log(`❌ Magikarp disparue - spawn nouvelle`);
-    generateNewMagikarp();
+  const handleAnimationEnd = (id: string) => {
+    replaceMagikarp(id);
   };
 
   return (
@@ -74,7 +104,7 @@ export default function MagikarpSpawner() {
         width: 'calc(100% + 400px)',
       }}
     >
-      {magikarp && (
+      {magikarpList.map(magikarp => (
         <div
           key={magikarp.id}
           className={magikarp.direction === 'left' ? 'animate-move-left' : 'animate-move-right'}
@@ -85,7 +115,7 @@ export default function MagikarpSpawner() {
             transformOrigin: 'left center',
             animationDuration: magikarp.duration + 's',
           }}
-          onAnimationEnd={handleAnimationEnd}
+          onAnimationEnd={() => handleAnimationEnd(magikarp.id)}
         >
           <img
             src={magikarp.isShiny ? '/pokemon-magikarp-shiny.png' : '/pokemon-magikarp.png'}
@@ -99,7 +129,7 @@ export default function MagikarpSpawner() {
             }}
           />
         </div>
-      )}
+      ))}
     </div>
   );
 }
