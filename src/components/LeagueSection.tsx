@@ -20,19 +20,19 @@ export default function LeagueSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-[#051923]/60 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/5 hover:border-[#80DEEA]/80 transition-all duration-500 hover:scale-105"
+              className={`group bg-[#051923]/60 backdrop-blur-sm rounded-xl p-3 md:p-6 border border-[#F5F9FC]/5 hover:border-[#80DEEA]/80 transition-all duration-500 hover:scale-105 ${cards.length === 3 && index === 2 ? 'col-span-2 md:col-span-1 md:col-start-2' : ''}`}
             >
-              <div className="bg-[#0B3C5D]/30 rounded-lg h-48 mb-4 flex items-center justify-center">
-                <Swords className="w-16 h-16 text-[#80DEEA]/40 group-hover:text-[#80DEEA] transition-colors duration-300" />
+              <div className="bg-[#0B3C5D]/30 rounded-lg h-32 md:h-48 mb-3 md:mb-4 flex items-center justify-center">
+                <Swords className="w-10 md:w-16 h-10 md:h-16 text-[#80DEEA]/40 group-hover:text-[#80DEEA] transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">
+              <h3 className="text-sm md:text-xl font-semibold text-[#F5F9FC] mb-1 md:mb-2 line-clamp-2">
                 {card.name}
               </h3>
-              <p className="text-[#F5F9FC]/60">{card.desc}</p>
+              <p className="text-xs md:text-base text-[#F5F9FC]/60 line-clamp-2">{card.desc}</p>
             </div>
           ))}
         </div>

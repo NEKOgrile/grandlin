@@ -95,13 +95,13 @@ export default function MagikarpSpawner() {
     <div 
       className="absolute pointer-events-none" 
       style={{ 
-        overflow: 'visible', 
+        overflow: 'hidden', 
         overflowX: 'hidden', 
         top: '-400px',
         minHeight: 'calc(100% + 800px)',
-        left: '-200px',
-        right: '-200px',
-        width: 'calc(100% + 400px)',
+        left: '0',
+        right: '0',
+        width: '100%',
       }}
     >
       {magikarpList.map(magikarp => (

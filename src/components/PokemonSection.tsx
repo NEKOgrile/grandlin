@@ -23,19 +23,19 @@ export default function PokemonSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-5 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20"
+              className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-3 md:p-5 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20"
             >
-              <div className="bg-[#0B3C5D]/50 rounded-xl h-48 mb-4 flex items-center justify-center">
-                <Sparkles className="w-16 h-16 text-[#4DD0E1]/70 group-hover:text-[#4DD0E1] transition-colors duration-300" />
+              <div className="bg-[#0B3C5D]/50 rounded-xl h-32 md:h-48 mb-3 md:mb-4 flex items-center justify-center">
+                <Sparkles className="w-10 md:w-16 h-10 md:h-16 text-[#4DD0E1]/70 group-hover:text-[#4DD0E1] transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">
+              <h3 className="text-sm md:text-xl font-semibold text-[#F5F9FC] mb-1 md:mb-2 line-clamp-2">
                 {card.name}
               </h3>
-              <p className="text-[#F5F9FC]/70">{card.desc}</p>
+              <p className="text-xs md:text-base text-[#F5F9FC]/70 line-clamp-2">{card.desc}</p>
             </div>
           ))}
         </div>
