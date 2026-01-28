@@ -1,4 +1,5 @@
 import { Castle } from 'lucide-react';
+import NemoSpawner from './NemoSpawner';
 
 export default function LorcanaSection() {
   const cards = [
@@ -9,6 +10,7 @@ export default function LorcanaSection() {
 
   return (
     <section className="relative py-16 px-6">
+      <NemoSpawner />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <Castle className="w-12 h-12 text-[#00BCD4] mx-auto mb-3" />
