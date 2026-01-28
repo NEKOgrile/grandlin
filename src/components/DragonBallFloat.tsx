@@ -27,14 +27,14 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
     });
   }, [seed]);
 
-  // Same depth styles as MagikarpBackground
+  // Same depth styles as MagikarpBackground but with positive z-index
   const getDepthStyles = (depth: number) => {
     const depthMap = {
-      1: { zIndex: -40, opacity: 0.2, scale: 0.5 },
-      2: { zIndex: -30, opacity: 0.3, scale: 0.6 },
-      3: { zIndex: -20, opacity: 0.4, scale: 0.7 },
-      4: { zIndex: -10, opacity: 0.5, scale: 0.8 },
-      5: { zIndex: -5, opacity: 0.6, scale: 0.9 },
+      1: { zIndex: 1, opacity: 0.2, scale: 0.5 },
+      2: { zIndex: 2, opacity: 0.3, scale: 0.6 },
+      3: { zIndex: 3, opacity: 0.4, scale: 0.7 },
+      4: { zIndex: 4, opacity: 0.5, scale: 0.8 },
+      5: { zIndex: 5, opacity: 0.6, scale: 0.9 },
     };
     return depthMap[depth as keyof typeof depthMap];
   };
