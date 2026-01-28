@@ -20,11 +20,11 @@ export default function LeagueSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-[#051923]/60 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/5 hover:border-[#80DEEA]/80 transition-all duration-500 hover:scale-105"
+              className="group bg-[#051923]/60 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/5 hover:border-[#80DEEA]/80 transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1"
             >
               <div className="bg-[#0B3C5D]/30 rounded-lg h-48 mb-4 flex items-center justify-center">
                 <Swords className="w-16 h-16 text-[#80DEEA]/40 group-hover:text-[#80DEEA] transition-colors duration-300" />
