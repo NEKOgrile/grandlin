@@ -1,4 +1,5 @@
 import { Zap } from 'lucide-react';
+import DragonBallFloat from './DragonBallFloat';
 
 export default function DragonBallSection() {
   const cards = [
@@ -8,7 +9,7 @@ export default function DragonBallSection() {
   ];
 
   return (
-    <section className="relative py-16 px-6">
+    <section className="relative py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <Zap className="w-12 h-12 text-[#00BCD4] mx-auto mb-3" />
@@ -37,62 +38,9 @@ export default function DragonBallSection() {
           ))}
         </div>
       </div>
-      {/* Depth boule animation - appears from depth (small + transparent -> full size + opaque) */}
-      <div className="pointer-events-none absolute right-8 -top-4 w-16 h-16 md:w-24 md:h-24">
-        <img
-          src="./boule1.png"
-          alt="Boule Dragon"
-          className="absolute inset-0 w-full h-full object-contain boule-base"
-        />
-        <img
-          src="./boule1_brillante.png"
-          alt="Boule Brillante"
-          className="absolute inset-0 w-full h-full object-contain boule-shiny"
-        />
-      </div>
-      <style>{`
-        .boule-base {
-          opacity: 1;
-          transform: scale(1) translateY(0);
-          animation: boule-float 3s ease-in-out infinite;
-        }
-        .boule-shiny {
-          opacity: 0;
-          transform: scale(0.8) translateY(6px);
-          filter: blur(2px) brightness(1.2);
-          animation: boule-shine 4s ease-in-out 0.6s infinite, boule-float 3s ease-in-out infinite;
-        }
-        @keyframes boule-float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
-        }
-        @keyframes boule-shine {
-          0% {
-            opacity: 0;
-            transform: scale(0.8) translateY(4px);
-            filter: blur(2px) brightness(0.9);
-          }
-          40% {
-            opacity: 0.6;
-            transform: scale(1.08) translateY(0px);
-            filter: blur(0px) brightness(1.6);
-          }
-          60% {
-            opacity: 0.85;
-            transform: scale(1.02) translateY(0px);
-            filter: blur(0px) brightness(1.4);
-          }
-          100% {
-            opacity: 0;
-            transform: scale(0.9) translateY(2px);
-            filter: blur(2px) brightness(1.0);
-          }
-        }
-      `}</style>
+      {/* Dragon Balls with floating animation - random positions */}
+      <DragonBallFloat imagePath="./boule1.png" shinyImagePath="./boule1_brillante.png" seed={1} />
+      <DragonBallFloat imagePath="./boule2.png" shinyImagePath="./boule2_brillante.png" seed={2} />
     </section>
   );
 }
