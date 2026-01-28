@@ -65,22 +65,22 @@ export default function DragonBallSection() {
         @keyframes boule-shine {
           0% {
             opacity: 0;
-            transform: scale(0.8) translateY(10px);
+            transform: scale(0.8) translateY(4px);
             filter: blur(2px) brightness(0.9);
           }
           40% {
             opacity: 0.6;
-            transform: scale(1.08) translateY(-6px);
+            transform: scale(1.08) translateY(0px);
             filter: blur(0px) brightness(1.6);
           }
           60% {
             opacity: 0.85;
-            transform: scale(1.02) translateY(-2px);
+            transform: scale(1.02) translateY(0px);
             filter: blur(0px) brightness(1.4);
           }
           100% {
             opacity: 0;
-            transform: scale(0.9) translateY(6px);
+            transform: scale(0.9) translateY(2px);
             filter: blur(2px) brightness(1.0);
           }
         }
