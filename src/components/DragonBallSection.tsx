@@ -54,13 +54,21 @@ export default function DragonBallSection() {
         .boule-base {
           opacity: 1;
           transform: scale(1) translateY(0);
-          transition: transform 0.6s ease-out;
+          animation: boule-float 3s ease-in-out infinite;
         }
         .boule-shiny {
           opacity: 0;
           transform: scale(0.8) translateY(6px);
           filter: blur(2px) brightness(1.2);
-          animation: boule-shine 4s ease-in-out 0.6s infinite;
+          animation: boule-shine 4s ease-in-out 0.6s infinite, boule-float 3s ease-in-out infinite;
+        }
+        @keyframes boule-float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
         }
         @keyframes boule-shine {
           0% {
