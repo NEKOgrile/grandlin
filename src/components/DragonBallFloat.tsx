@@ -11,14 +11,11 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
 
   useEffect(() => {
     // Use true random for different positions on each page load
-    // Divide screen into grid zones to ensure minimum distance
-    // 7 boules : arrange in columns to minimize overlap
     const zone = (seed - 1) % 7;
-    const zoneWidth = 100 / 7; // ~14% width per zone
+    const zoneWidth = 100 / 7;
     const minTop = -10;
     const maxTop = 110;
 
-    // Base position in zone + random offset within safe margins
     const baseRight = zone * zoneWidth + Math.random() * (zoneWidth - 15);
     const baseTop = minTop + Math.random() * (maxTop - minTop);
 
@@ -28,18 +25,14 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
     });
   }, [seed]);
 
-  // Calculate depth effect based on top position (higher = further back)
-  const depthOpacity = Math.max(0.3, 1 - (position.top / 100) * 0.5); // 0.3 to 1
-  const depthScale = Math.max(0.6, 1 - (position.top / 100) * 0.3); // 0.6 to 1
-
   return (
     <div
       className="pointer-events-none absolute w-16 h-16 md:w-24 md:h-24"
       style={{
         top: `${position.top}%`,
         right: `${position.right}%`,
-        zIndex: 0,        opacity: depthOpacity,
-        transform: `scale(${depthScale})`,      }}
+        zIndex: -1,
+      }}
     >
       <img
         src={imagePath}
