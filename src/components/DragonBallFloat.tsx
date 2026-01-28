@@ -7,7 +7,7 @@ interface DragonBallFloatProps {
 }
 
 export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: DragonBallFloatProps) {
-  const [position, setPosition] = useState({ top: 0, right: 0 });
+  const [position, setPosition] = useState({ top: 0, right: 0, depth: 3 });
 
   useEffect(() => {
     // Use true random for different positions on each page load
@@ -18,12 +18,28 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
 
     const baseRight = zone * zoneWidth + Math.random() * (zoneWidth - 15);
     const baseTop = minTop + Math.random() * (maxTop - minTop);
+    const depth = Math.floor(Math.random() * 5) + 1; // Random depth 1-5 like Magikarp
 
     setPosition({ 
       top: baseTop, 
-      right: Math.max(0, Math.min(85, baseRight))
+      right: Math.max(0, Math.min(85, baseRight)),
+      depth
     });
   }, [seed]);
+
+  // Same depth styles as MagikarpBackground
+  const getDepthStyles = (depth: number) => {
+    const depthMap = {
+      1: { zIndex: -40, opacity: 0.2, scale: 0.5 },
+      2: { zIndex: -30, opacity: 0.3, scale: 0.6 },
+      3: { zIndex: -20, opacity: 0.4, scale: 0.7 },
+      4: { zIndex: -10, opacity: 0.5, scale: 0.8 },
+      5: { zIndex: -5, opacity: 0.6, scale: 0.9 },
+    };
+    return depthMap[depth as keyof typeof depthMap];
+  };
+
+  const depthStyle = getDepthStyles(position.depth);
 
   return (
     <div
@@ -31,7 +47,9 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
       style={{
         top: `${position.top}%`,
         right: `${position.right}%`,
-        zIndex: 0,
+        zIndex: depthStyle.zIndex,
+        opacity: depthStyle.opacity,
+        transform: `scale(${depthStyle.scale})`,
       }}
     >
       <img
