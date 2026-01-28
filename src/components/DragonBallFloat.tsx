@@ -27,14 +27,14 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
     });
   }, [seed]);
 
-  // Same depth styles as MagikarpBackground - no transparency, positive z-index
+  // Negative z-index to stay behind cards
   const getDepthStyles = (depth: number) => {
     const depthMap = {
-      1: { zIndex: 0, opacity: 1, scale: 0.5 },
-      2: { zIndex: 1, opacity: 1, scale: 0.6 },
-      3: { zIndex: 2, opacity: 1, scale: 0.7 },
-      4: { zIndex: 3, opacity: 1, scale: 0.8 },
-      5: { zIndex: 4, opacity: 1, scale: 0.9 },
+      1: { zIndex: -5, opacity: 1, scale: 0.5 },
+      2: { zIndex: -4, opacity: 1, scale: 0.6 },
+      3: { zIndex: -3, opacity: 1, scale: 0.7 },
+      4: { zIndex: -2, opacity: 1, scale: 0.8 },
+      5: { zIndex: -1, opacity: 1, scale: 0.9 },
     };
     return depthMap[depth as keyof typeof depthMap];
   };

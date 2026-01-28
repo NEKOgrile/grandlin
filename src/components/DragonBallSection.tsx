@@ -9,7 +9,7 @@ export default function DragonBallSection() {
   ];
 
   return (
-    <section className="relative py-20 px-6">
+    <section className="relative py-20 px-6" style={{ zIndex: 10 }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <Zap className="w-12 h-12 text-[#00BCD4] mx-auto mb-3" />
@@ -25,7 +25,7 @@ export default function DragonBallSection() {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-[#051923]/50 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/10 hover:border-[#00BCD4] transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1"
+              className="group relative z-20 bg-[#051923]/50 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/10 hover:border-[#00BCD4] transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1"
             >
               <div className="bg-[#0B3C5D]/40 rounded-lg h-48 mb-4 flex items-center justify-center">
                 <Zap className="w-16 h-16 text-[#00BCD4]/50 group-hover:text-[#00BCD4] transition-colors duration-300" />
