@@ -34,7 +34,7 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
       style={{
         top: `${position.top}%`,
         right: `${position.right}%`,
-        zIndex: 5,
+        zIndex: -1,
       }}
     >
       <img
