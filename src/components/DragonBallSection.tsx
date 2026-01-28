@@ -37,6 +37,36 @@ export default function DragonBallSection() {
           ))}
         </div>
       </div>
+      {/* Depth boule animation - appears from depth (small + transparent -> full size + opaque) */}
+      <img
+        src="./boule1.png"
+        alt="Boule Dragon"
+        className="pointer-events-none absolute right-8 -top-4 w-16 h-16 md:w-24 md:h-24 object-contain boule-depth"
+      />
+      <style>{`
+        .boule-depth {
+          opacity: 0.35;
+          transform: scale(0.6) translateY(10px);
+          animation: boule-appear 1.2s ease-out 0.3s forwards;
+        }
+        @keyframes boule-appear {
+          0% {
+            opacity: 0.2;
+            transform: scale(0.5) translateY(18px);
+            filter: blur(2px);
+          }
+          60% {
+            opacity: 0.9;
+            transform: scale(1.05) translateY(-6px);
+            filter: blur(0px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: none;
+          }
+        }
+      `}</style>
     </section>
   );
 }
