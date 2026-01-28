@@ -67,7 +67,7 @@ export default function BaudroieSpawner() {
         key={baudroie.id}
         src="./Baudroie _nemo.png"
         alt="Baudroie"
-        className={`absolute w-32 h-32 ${baudroie.direction === 'left' ? 'animate-swim-left' : 'animate-swim-right'}`}
+        className={`absolute w-32 h-32 ${baudroie.direction === 'left' ? 'baudroie-swim-left' : 'baudroie-swim-right'}`}
         style={{
           top: `${baudroie.top}%`,
           transform: `translateY(-50%) scaleX(-1) ${baudroie.direction === 'left' ? 'scaleX(-1)' : 'scaleX(1)'}`,
@@ -77,7 +77,7 @@ export default function BaudroieSpawner() {
       />
       
       <style>{`
-        @keyframes swim-left {
+        @keyframes baudroie-swim-left {
           from {
             right: -80px;
           }
@@ -85,7 +85,7 @@ export default function BaudroieSpawner() {
             right: 100%;
           }
         }
-        @keyframes swim-right {
+        @keyframes baudroie-swim-right {
           from {
             left: -80px;
           }
@@ -93,11 +93,11 @@ export default function BaudroieSpawner() {
             left: 100%;
           }
         }
-        .animate-swim-left {
-          animation: swim-left linear forwards;
+        .baudroie-swim-left {
+          animation: baudroie-swim-left linear forwards;
         }
-        .animate-swim-right {
-          animation: swim-right linear forwards;
+        .baudroie-swim-right {
+          animation: baudroie-swim-right linear forwards;
         }
       `}</style>
     </div>

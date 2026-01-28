@@ -62,7 +62,7 @@ export default function NemoSpawner() {
         key={nemo.id}
         src="./3_nemo.png"
         alt="Nemo"
-        className={`absolute w-96 h-96 object-contain ${nemo.direction === 'left' ? 'animate-swim-left' : 'animate-swim-right'}`}
+        className={`absolute w-96 h-96 object-contain ${nemo.direction === 'left' ? 'nemo-swim-left' : 'nemo-swim-right'}`}
         style={{
           top: `${nemo.top}%`,
           transform: `translateY(-50%) ${nemo.direction === 'left' ? 'scaleX(-1)' : 'scaleX(1)'}`,
@@ -72,7 +72,7 @@ export default function NemoSpawner() {
       />
       
       <style>{`
-        @keyframes swim-left {
+        @keyframes nemo-swim-left {
           from {
             right: -400px;
           }
@@ -80,7 +80,7 @@ export default function NemoSpawner() {
             right: 100%;
           }
         }
-        @keyframes swim-right {
+        @keyframes nemo-swim-right {
           from {
             left: -400px;
           }
@@ -88,11 +88,11 @@ export default function NemoSpawner() {
             left: 100%;
           }
         }
-        .animate-swim-left {
-          animation: swim-left linear forwards;
+        .nemo-swim-left {
+          animation: nemo-swim-left linear forwards;
         }
-        .animate-swim-right {
-          animation: swim-right linear forwards;
+        .nemo-swim-right {
+          animation: nemo-swim-right linear forwards;
         }
         .animate-spawn {
           animation: spawn 0.5s ease-out forwards;
