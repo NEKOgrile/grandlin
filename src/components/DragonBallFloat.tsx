@@ -28,14 +28,18 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
     });
   }, [seed]);
 
+  // Calculate depth effect based on top position (higher = further back)
+  const depthOpacity = Math.max(0.3, 1 - (position.top / 100) * 0.5); // 0.3 to 1
+  const depthScale = Math.max(0.6, 1 - (position.top / 100) * 0.3); // 0.6 to 1
+
   return (
     <div
       className="pointer-events-none absolute w-16 h-16 md:w-24 md:h-24"
       style={{
         top: `${position.top}%`,
         right: `${position.right}%`,
-        zIndex: -1,
-      }}
+        zIndex: 0,        opacity: depthOpacity,
+        transform: `scale(${depthScale})`,      }}
     >
       <img
         src={imagePath}
