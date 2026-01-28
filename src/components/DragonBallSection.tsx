@@ -43,6 +43,9 @@ export default function DragonBallSection() {
       <DragonBallFloat imagePath="./boule2.png" shinyImagePath="./boule2_brillante.png" seed={2} />
       <DragonBallFloat imagePath="./boule3.png" shinyImagePath="./boule3_brillante.png" seed={3} />
       <DragonBallFloat imagePath="./boule4.png" shinyImagePath="./boule4_brillante.png" seed={4} />
+      <DragonBallFloat imagePath="./boule5.png" shinyImagePath="./boule5_brillante.png" seed={5} />
+      <DragonBallFloat imagePath="./boule6.png" shinyImagePath="./boule6_brillante.png" seed={6} />
+      <DragonBallFloat imagePath="./boule7.png" shinyImagePath="./boule7_brillante.png" seed={7} />
     </section>
   );
 }
