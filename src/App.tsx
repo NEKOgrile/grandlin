@@ -56,7 +56,7 @@ function App() {
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
         <div className="relative z-10 text-center px-6">
           <img
-            src="/image.png"
+            src="./image.png"
             alt="GRANDLINE"
             className="w-full max-w-3xl mx-auto mb-6 drop-shadow-2xl"
           />
