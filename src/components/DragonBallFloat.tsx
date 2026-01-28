@@ -12,15 +12,26 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
   useEffect(() => {
     // Seeded random for consistent but unique positions per instance
     const random = (index: number) => {
-      const x = Math.sin(seed + index) * 10000;
+      const x = Math.sin(seed * 12.9898 + index * 78.233) * 43758.5453;
       return x - Math.floor(x);
     };
 
-    // Position aléatoire mais pas trop proche : top entre -20% et 120%, right entre 5% et 85%
-    const top = -20 + random(1) * 140; // -20% to 120%
-    const right = 5 + random(2) * 80;  // 5% to 85%
+    // Divide screen into grid zones to ensure minimum distance
+    // 7 boules : arrange in columns to minimize overlap
+    const zone = (seed - 1) % 7;
+    const zoneWidth = 100 / 7; // ~14% width per zone
+    const minTop = -10;
+    const maxTop = 110;
+    const minGap = 25; // Minimum % distance between boules
 
-    setPosition({ top, right });
+    // Base position in zone + random offset within safe margins
+    const baseRight = zone * zoneWidth + random(1) * (zoneWidth - 15);
+    const baseTop = minTop + random(2) * (maxTop - minTop - minGap);
+
+    setPosition({ 
+      top: baseTop, 
+      right: Math.max(0, Math.min(85, baseRight))
+    });
   }, [seed]);
 
   return (
@@ -29,6 +40,7 @@ export default function DragonBallFloat({ imagePath, shinyImagePath, seed }: Dra
       style={{
         top: `${position.top}%`,
         right: `${position.right}%`,
+        zIndex: -10,
       }}
     >
       <img
