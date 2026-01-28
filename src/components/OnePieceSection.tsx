@@ -8,7 +8,7 @@ export default function OnePieceSection() {
   ];
 
   return (
-    <section className="relative py-16 px-6">
+    <section className="relative py-16 px-6" style={{ zIndex: 10 }}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <Anchor className="w-12 h-12 text-[#26C6DA] mx-auto mb-3" />
