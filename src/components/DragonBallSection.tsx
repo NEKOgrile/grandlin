@@ -38,32 +38,50 @@ export default function DragonBallSection() {
         </div>
       </div>
       {/* Depth boule animation - appears from depth (small + transparent -> full size + opaque) */}
-      <img
-        src="./boule1.png"
-        alt="Boule Dragon"
-        className="pointer-events-none absolute right-8 -top-4 w-16 h-16 md:w-24 md:h-24 object-contain boule-depth"
-      />
+      <div className="pointer-events-none absolute right-8 -top-4 w-16 h-16 md:w-24 md:h-24">
+        <img
+          src="./boule1.png"
+          alt="Boule Dragon"
+          className="absolute inset-0 w-full h-full object-contain boule-base"
+        />
+        <img
+          src="./boule1_brillante.png"
+          alt="Boule Brillante"
+          className="absolute inset-0 w-full h-full object-contain boule-shiny"
+        />
+      </div>
       <style>{`
-        .boule-depth {
-          opacity: 0.35;
-          transform: scale(0.6) translateY(10px);
-          animation: boule-appear 1.2s ease-out 0.3s forwards;
+        .boule-base {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+          transition: transform 0.6s ease-out;
         }
-        @keyframes boule-appear {
+        .boule-shiny {
+          opacity: 0;
+          transform: scale(0.8) translateY(6px);
+          filter: blur(2px) brightness(1.2);
+          animation: boule-shine 4s ease-in-out 0.6s infinite;
+        }
+        @keyframes boule-shine {
           0% {
-            opacity: 0.2;
-            transform: scale(0.5) translateY(18px);
-            filter: blur(2px);
+            opacity: 0;
+            transform: scale(0.8) translateY(10px);
+            filter: blur(2px) brightness(0.9);
+          }
+          40% {
+            opacity: 0.6;
+            transform: scale(1.08) translateY(-6px);
+            filter: blur(0px) brightness(1.6);
           }
           60% {
-            opacity: 0.9;
-            transform: scale(1.05) translateY(-6px);
-            filter: blur(0px);
+            opacity: 0.85;
+            transform: scale(1.02) translateY(-2px);
+            filter: blur(0px) brightness(1.4);
           }
           100% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            filter: none;
+            opacity: 0;
+            transform: scale(0.9) translateY(6px);
+            filter: blur(2px) brightness(1.0);
           }
         }
       `}</style>
