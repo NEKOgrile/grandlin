@@ -41,6 +41,8 @@ export default function DragonBallSection() {
       {/* Dragon Balls with floating animation - random positions */}
       <DragonBallFloat imagePath="./boule1.png" shinyImagePath="./boule1_brillante.png" seed={1} />
       <DragonBallFloat imagePath="./boule2.png" shinyImagePath="./boule2_brillante.png" seed={2} />
+      <DragonBallFloat imagePath="./boule3.png" shinyImagePath="./boule3_brillante.png" seed={3} />
+      <DragonBallFloat imagePath="./boule4.png" shinyImagePath="./boule4_brillante.png" seed={4} />
     </section>
   );
 }
