@@ -1,11 +1,14 @@
 import { Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import DragonBallFloat from './DragonBallFloat';
 
 export default function DragonBallSection() {
-  const cards = [
-    { name: 'Fusion World', desc: 'Nouvelles fusions' },
-    { name: 'Super Card Game', desc: 'Guerriers légendaires' },
-    { name: 'Éditions spéciales', desc: 'Cartes exclusives' },
+  const navigate = useNavigate();
+  const categories = [
+    { name: 'Boosters', desc: 'Dernières extensions' },
+    { name: 'Pack / Coffrets', desc: 'Collections premium' },
+    { name: 'Cartes à l\'unité', desc: 'Cartes puissantes' },
+    { name: 'Decks préconstruits', desc: 'Prêts à jouer' },
   ];
 
   return (
@@ -22,18 +25,19 @@ export default function DragonBallSection() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {cards.map((card, index) => (
+          {categories.map((category, index) => (
             <div
               key={index}
-              className="group relative z-20 bg-[#051923]/50 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/10 hover:border-[#00BCD4] transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1"
+              onClick={() => navigate(`/theme/dragonball/${encodeURIComponent(category.name)}`)}
+              className="group relative z-20 bg-[#051923]/50 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/10 hover:border-[#00BCD4] transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1 cursor-pointer"
             >
               <div className="bg-[#0B3C5D]/40 rounded-lg h-48 mb-4 flex items-center justify-center">
                 <Zap className="w-16 h-16 text-[#00BCD4]/50 group-hover:text-[#00BCD4] transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">
-                {card.name}
+                {category.name}
               </h3>
-              <p className="text-[#F5F9FC]/70">{card.desc}</p>
+              <p className="text-[#F5F9FC]/70">{category.desc}</p>
             </div>
           ))}
         </div>

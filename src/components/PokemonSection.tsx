@@ -1,10 +1,13 @@
 import { Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import MagikarpSpawner from './MagikarpSpawner';
 
 export default function PokemonSection() {
-  const cards = [
-    { name: 'Boosters Pokémon', desc: 'Évolution Écarlate & Violet' },
-    { name: 'Coffrets Premium', desc: 'Collections exclusives' },
+  const navigate = useNavigate();
+
+  const categories = [
+    { name: 'Boosters', desc: 'Évolution Écarlate & Violet' },
+    { name: 'Pack / Coffrets', desc: 'Collections exclusives' },
     { name: 'Cartes à l\'unité', desc: 'Rares et ultra-rares' },
     { name: 'Decks préconstruits', desc: 'Prêts à jouer' },
   ];
@@ -24,18 +27,19 @@ export default function PokemonSection() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {cards.map((card, index) => (
+          {categories.map((category, index) => (
             <div
               key={index}
-              className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-5 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20"
+              onClick={() => navigate(`/theme/pokemon/${encodeURIComponent(category.name)}`)}
+              className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-5 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20 cursor-pointer"
             >
               <div className="bg-[#0B3C5D]/50 rounded-xl h-48 mb-4 flex items-center justify-center">
                 <Sparkles className="w-16 h-16 text-[#4DD0E1]/70 group-hover:text-[#4DD0E1] transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">
-                {card.name}
+                {category.name}
               </h3>
-              <p className="text-[#F5F9FC]/70">{card.desc}</p>
+              <p className="text-[#F5F9FC]/70">{category.desc}</p>
             </div>
           ))}
         </div>
