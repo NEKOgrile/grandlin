@@ -1,4 +1,5 @@
 import { Anchor } from 'lucide-react';
+import OnePieceSpawner from './OnePieceSpawner';
 
 export default function OnePieceSection() {
   const cards = [
@@ -8,7 +9,8 @@ export default function OnePieceSection() {
   ];
 
   return (
-    <section className="relative py-16 px-6" style={{ zIndex: 10 }}>
+    <section className="relative py-16 px-6" style={{ zIndex: 10, overflow: 'visible' }}>
+      <OnePieceSpawner />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <Anchor className="w-12 h-12 text-[#26C6DA] mx-auto mb-3" />
@@ -24,7 +26,7 @@ export default function OnePieceSection() {
           {cards.map((card, index) => (
             <div
               key={index}
-              className="group bg-[#0B3C5D]/40 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/15 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1"
+              className="group relative z-20 bg-[#0B3C5D]/40 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/15 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1"
             >
               <div className="bg-[#051923]/60 rounded-lg h-48 mb-4 flex items-center justify-center">
                 <Anchor className="w-16 h-16 text-[#26C6DA]/60 group-hover:text-[#26C6DA] transition-colors duration-300" />
