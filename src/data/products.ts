@@ -2,6 +2,14 @@ export interface Product {
   id: string;
   name: string;
   category: 'Boosters' | 'Pack / Coffrets' | 'Cartes à l\'unité' | 'Decks préconstruits';
+  set?: string;
+}
+
+export interface BoosterSet {
+  id: string;
+  name: string;
+  code: string;
+  products: Product[];
 }
 
 export interface ThemeConfig {
@@ -11,116 +19,275 @@ export interface ThemeConfig {
   accentColor: string;
   icon: string;
   products: Product[];
+  boosterSets?: BoosterSet[];
 }
 
 export const themes: ThemeConfig[] = [
+  /* =======================
+      POKÉMON
+  ======================= */
   {
-    id: 'pokemon',
-    name: 'Pokémon',
-    bgColor: 'rgb(50, 110, 140)',
-    accentColor: 'rgb(255, 200, 0)',
-    icon: 'pokéball',
-    products: [
-      // Boosters - vrais noms de séries
-      { id: 'pok-b-1', name: 'Scarlet & Violet ex', category: 'Boosters' },
-      { id: 'pok-b-2', name: 'Scarlet & Violet', category: 'Boosters' },
-      { id: 'pok-b-3', name: 'Sword & Shield ex', category: 'Boosters' },
-      { id: 'pok-b-4', name: 'Sword & Shield', category: 'Boosters' },
-      { id: 'pok-b-5', name: 'Rebel Clash', category: 'Boosters' },
-      { id: 'pok-b-6', name: 'Sun & Moon', category: 'Boosters' },
-      { id: 'pok-b-7', name: 'Hidden Fates', category: 'Boosters' },
-      { id: 'pok-b-8', name: 'Evolutions', category: 'Boosters' },
-      
-      // Pack / Coffrets
-      { id: 'pok-p-1', name: 'Coffret Pikachu ex', category: 'Pack / Coffrets' },
-      { id: 'pok-p-2', name: 'Coffret Charizard ex', category: 'Pack / Coffrets' },
-      { id: 'pok-p-3', name: 'Coffret Collection Mewtwo', category: 'Pack / Coffrets' },
-      { id: 'pok-p-4', name: 'Coffret Premium Blastoise', category: 'Pack / Coffrets' },
-      { id: 'pok-p-5', name: 'Mega Evolution Box', category: 'Pack / Coffrets' },
-      
+  id: 'pokemon',
+  name: 'Pokémon',
+  bgColor: 'rgb(50, 110, 140)',
+  accentColor: 'rgb(255, 200, 0)',
+  icon: 'pokéball',
+
+  boosterSets: [
+    /* ======================
+        MÉGA-ÉVOLUTION
+    ====================== */
+    {
+      id: 'pok-era-mega',
+      name: 'Méga-Évolution',
+      code: 'MEGA',
+      products: [
+        { id: 'pok-mega-1', name: 'XY – Évolution', category: 'Boosters', set: 'MEGA' },
+        { id: 'pok-mega-2', name: 'XY – Poings Furieux', category: 'Boosters', set: 'MEGA' },
+        { id: 'pok-mega-3', name: 'XY – Vigueur Spectrale', category: 'Boosters', set: 'MEGA' },
+        { id: 'pok-mega-4', name: 'XY – Impact des Destins', category: 'Boosters', set: 'MEGA' },
+      ],
+    },
+
+    /* ======================
+        ÉCARLATE & VIOLET
+    ====================== */
+    {
+      id: 'pok-era-sv',
+      name: 'Écarlate & Violet',
+      code: 'SV',
+      products: [
+        { id: 'pok-sv-1', name: 'Écarlate & Violet', category: 'Boosters', set: 'SV' },
+        { id: 'pok-sv-2', name: 'Évolutions à Paldea', category: 'Boosters', set: 'SV' },
+        { id: 'pok-sv-3', name: 'Flammes Obsidiennes', category: 'Boosters', set: 'SV' },
+        { id: 'pok-sv-4', name: 'Forces Temporelles', category: 'Boosters', set: 'SV' },
+        { id: 'pok-sv-5', name: 'Mascarade Crépusculaire', category: 'Boosters', set: 'SV' },
+      ],
+    },
+
+    /* ======================
+        ÉPÉE & BOUCLIER
+    ====================== */
+    {
+      id: 'pok-era-swsh',
+      name: 'Épée & Bouclier',
+      code: 'SWSH',
+      products: [
+        { id: 'pok-swsh-1', name: 'Épée & Bouclier', category: 'Boosters', set: 'SWSH' },
+        { id: 'pok-swsh-2', name: 'Voltage Éclatant', category: 'Boosters', set: 'SWSH' },
+        { id: 'pok-swsh-3', name: 'Styles de Combat', category: 'Boosters', set: 'SWSH' },
+        { id: 'pok-swsh-4', name: 'Règne de Glace', category: 'Boosters', set: 'SWSH' },
+        { id: 'pok-swsh-5', name: 'Évolution Céleste', category: 'Boosters', set: 'SWSH' },
+      ],
+    },
+
+    /* ======================
+        SOLEIL & LUNE
+    ====================== */
+    {
+      id: 'pok-era-sm',
+      name: 'Soleil & Lune',
+      code: 'SM',
+      products: [
+        { id: 'pok-sm-1', name: 'Soleil & Lune', category: 'Boosters', set: 'SM' },
+        { id: 'pok-sm-2', name: 'Gardiens Ascendants', category: 'Boosters', set: 'SM' },
+        { id: 'pok-sm-3', name: 'Ombres Ardentes', category: 'Boosters', set: 'SM' },
+        { id: 'pok-sm-4', name: 'Ultra-Prisme', category: 'Boosters', set: 'SM' },
+      ],
+    },
+
+    /* ======================
+        XY
+    ====================== */
+    {
+      id: 'pok-era-xy',
+      name: 'XY',
+      code: 'XY',
+      products: [
+        { id: 'pok-xy-1', name: 'XY', category: 'Boosters', set: 'XY' },
+        { id: 'pok-xy-2', name: 'Étincelles', category: 'Boosters', set: 'XY' },
+        { id: 'pok-xy-3', name: 'Rupture Turbo', category: 'Boosters', set: 'XY' },
+      ],
+    },
+
+    /* ======================
+        NOIR & BLANC
+    ====================== */
+    {
+      id: 'pok-era-bw',
+      name: 'Noir & Blanc',
+      code: 'BW',
+      products: [
+        { id: 'pok-bw-1', name: 'Noir & Blanc', category: 'Boosters', set: 'BW' },
+        { id: 'pok-bw-2', name: 'Puissances Émergentes', category: 'Boosters', set: 'BW' },
+        { id: 'pok-bw-3', name: 'Tempête Plasma', category: 'Boosters', set: 'BW' },
+      ],
+    },
+
+    /* ======================
+        PROMOS
+    ====================== */
+    {
+      id: 'pok-era-promo',
+      name: 'Promotions',
+      code: 'PROMO',
+      products: [
+        { id: 'pok-pro-1', name: 'Promo Ligue Pokémon', category: 'Boosters', set: 'PROMO' },
+        { id: 'pok-pro-2', name: 'Promo Coffret Spécial', category: 'Boosters', set: 'PROMO' },
+      ],
+    },
+  ],
+
+  products: [
+      // Coffrets
+      { id: 'pok-pack-1', name: 'Coffret Pikachu ex', category: 'Pack / Coffrets' },
+      { id: 'pok-pack-2', name: 'Coffret Charizard ex', category: 'Pack / Coffrets' },
+      { id: 'pok-pack-3', name: 'Coffret Premium Blastoise', category: 'Pack / Coffrets' },
+
       // Cartes à l'unité
-      { id: 'pok-c-1', name: 'Pikachu Illustré', category: 'Cartes à l\'unité' },
-      { id: 'pok-c-2', name: 'Charizard ex', category: 'Cartes à l\'unité' },
-      { id: 'pok-c-3', name: 'Mewtwo ex Prismatique', category: 'Cartes à l\'unité' },
-      { id: 'pok-c-4', name: 'Blastoise Gold Secret', category: 'Cartes à l\'unité' },
-      { id: 'pok-c-5', name: 'Dragonite Rainbow Rare', category: 'Cartes à l\'unité' },
-      
-      // Decks préconstruits
-      { id: 'pok-d-1', name: 'Deck Pikachu', category: 'Decks préconstruits' },
-      { id: 'pok-d-2', name: 'Deck Électrique', category: 'Decks préconstruits' },
-      { id: 'pok-d-3', name: 'Deck Feu Dragon', category: 'Decks préconstruits' },
-      { id: 'pok-d-4', name: 'Deck Eau Blastoise', category: 'Decks préconstruits' },
+      { id: 'pok-card-1', name: 'Charizard ex', category: 'Cartes à l\'unité' },
+      { id: 'pok-card-2', name: 'Mewtwo ex Full Art', category: 'Cartes à l\'unité' },
+      { id: 'pok-card-3', name: 'Dragonite Rainbow Rare', category: 'Cartes à l\'unité' },
+
+      // Decks
+      { id: 'pok-deck-1', name: 'Deck Pikachu', category: 'Decks préconstruits' },
+      { id: 'pok-deck-2', name: 'Deck Feu Dragon', category: 'Decks préconstruits' },
     ],
   },
-  {
-    id: 'magic',
-    name: 'Magic: The Gathering',
-    bgColor: 'rgb(60, 80, 120)',
-    accentColor: 'rgb(150, 100, 200)',
-    icon: 'mana',
-    products: [
-      { id: 'mag-b-1', name: 'Wilds of Eldraine', category: 'Boosters' },
-      { id: 'mag-b-2', name: 'The Lost Caverns', category: 'Boosters' },
-      { id: 'mag-b-3', name: 'March of the Machine', category: 'Boosters' },
-      { id: 'mag-p-1', name: 'Coffret Planeswalker', category: 'Pack / Coffrets' },
-      { id: 'mag-c-1', name: 'Carte rare Black Lotus', category: 'Cartes à l\'unité' },
-      { id: 'mag-d-1', name: 'Deck Bleu/Blanc', category: 'Decks préconstruits' },
-    ],
-  },
+
+  /* =======================
+      ONE PIECE
+  ======================= */
   {
     id: 'onepiece',
     name: 'One Piece',
     bgColor: 'rgb(11, 60, 93)',
     accentColor: 'rgb(38, 198, 218)',
     icon: 'anchor',
+
+    boosterSets: [
+      {
+        id: 'op-set-op01',
+        name: 'Romance Dawn',
+        code: 'OP01',
+        products: [
+          { id: 'op-op01-b1', name: 'Booster Romance Dawn', category: 'Boosters', set: 'OP01' },
+        ],
+      },
+      {
+        id: 'op-set-op02',
+        name: 'Paramount War',
+        code: 'OP02',
+        products: [
+          { id: 'op-op02-b1', name: 'Booster Paramount War', category: 'Boosters', set: 'OP02' },
+        ],
+      },
+      {
+        id: 'op-set-op05',
+        name: 'Awakening of the New Era',
+        code: 'OP05',
+        products: [
+          { id: 'op-op05-b1', name: 'Booster Awakening of the New Era', category: 'Boosters', set: 'OP05' },
+        ],
+      },
+    ],
+
     products: [
-      { id: 'op-b-1', name: 'Marineford Era', category: 'Boosters' },
-      { id: 'op-b-2', name: 'Grand Line', category: 'Boosters' },
-      { id: 'op-p-1', name: 'Coffret Luffy', category: 'Pack / Coffrets' },
-      { id: 'op-c-1', name: 'Luffy Gear 5', category: 'Cartes à l\'unité' },
-      { id: 'op-d-1', name: 'Deck Pirate', category: 'Decks préconstruits' },
+      { id: 'op-pack-1', name: 'Coffret Luffy', category: 'Pack / Coffrets' },
+      { id: 'op-pack-2', name: 'Coffret Law', category: 'Pack / Coffrets' },
+
+      { id: 'op-card-1', name: 'Monkey D. Luffy Gear 5', category: 'Cartes à l\'unité' },
+      { id: 'op-card-2', name: 'Trafalgar Law Alt Art', category: 'Cartes à l\'unité' },
+
+      { id: 'op-deck-1', name: 'Deck Pirate Rouge', category: 'Decks préconstruits' },
+      { id: 'op-deck-2', name: 'Deck Marine', category: 'Decks préconstruits' },
     ],
   },
+
+  /* =======================
+      MAGIC
+  ======================= */
   {
-    id: 'lorcana',
-    name: 'Lorcana',
-    bgColor: 'rgb(40, 80, 100)',
-    accentColor: 'rgb(100, 200, 255)',
-    icon: 'sparkles',
+    id: 'magic',
+    name: 'Magic: The Gathering',
+    bgColor: 'rgb(60, 80, 120)',
+    accentColor: 'rgb(150, 100, 200)',
+    icon: 'mana',
+
+    boosterSets: [
+      {
+        id: 'mtg-set-eld',
+        name: 'Wilds of Eldraine',
+        code: 'WOE',
+        products: [
+          { id: 'mtg-woe-b1', name: 'Booster Wilds of Eldraine', category: 'Boosters', set: 'WOE' },
+        ],
+      },
+      {
+        id: 'mtg-set-mom',
+        name: 'March of the Machine',
+        code: 'MOM',
+        products: [
+          { id: 'mtg-mom-b1', name: 'Booster March of the Machine', category: 'Boosters', set: 'MOM' },
+        ],
+      },
+    ],
+
     products: [
-      { id: 'lor-b-1', name: 'Enchantment Era', category: 'Boosters' },
-      { id: 'lor-b-2', name: 'Mythology', category: 'Boosters' },
-      { id: 'lor-p-1', name: 'Coffret Ariel', category: 'Pack / Coffrets' },
-      { id: 'lor-c-1', name: 'Ariel Illustrée', category: 'Cartes à l\'unité' },
-      { id: 'lor-d-1', name: 'Deck Magie Bleue', category: 'Decks préconstruits' },
+      { id: 'mtg-pack-1', name: 'Coffret Planeswalker', category: 'Pack / Coffrets' },
+      { id: 'mtg-card-1', name: 'Black Lotus', category: 'Cartes à l\'unité' },
+      { id: 'mtg-deck-1', name: 'Deck Azorius Control', category: 'Decks préconstruits' },
     ],
   },
+
+  /* =======================
+      DRAGON BALL
+  ======================= */
   {
     id: 'dragonball',
     name: 'Dragon Ball',
     bgColor: 'rgb(11, 60, 93)',
     accentColor: 'rgb(0, 188, 212)',
     icon: 'zap',
+
     products: [
-      { id: 'db-b-1', name: 'Super Card Game', category: 'Boosters' },
-      { id: 'db-b-2', name: 'Fusion World', category: 'Boosters' },
-      { id: 'db-p-1', name: 'Coffret Goku', category: 'Pack / Coffrets' },
-      { id: 'db-c-1', name: 'Goku Ultra Instinct', category: 'Cartes à l\'unité' },
-      { id: 'db-d-1', name: 'Deck Saiyan', category: 'Decks préconstruits' },
+      { id: 'db-pack-1', name: 'Coffret Goku', category: 'Pack / Coffrets' },
+      { id: 'db-card-1', name: 'Goku Ultra Instinct', category: 'Cartes à l\'unité' },
+      { id: 'db-deck-1', name: 'Deck Saiyan', category: 'Decks préconstruits' },
     ],
   },
+
+  /* =======================
+      LORCANA
+  ======================= */
+  {
+    id: 'lorcana',
+    name: 'Lorcana',
+    bgColor: 'rgb(40, 80, 100)',
+    accentColor: 'rgb(100, 200, 255)',
+    icon: 'sparkles',
+
+    products: [
+      { id: 'lor-pack-1', name: 'Coffret Ariel', category: 'Pack / Coffrets' },
+      { id: 'lor-card-1', name: 'Ariel Illustrée', category: 'Cartes à l\'unité' },
+      { id: 'lor-deck-1', name: 'Deck Magie Bleue', category: 'Decks préconstruits' },
+    ],
+  },
+
+  /* =======================
+      LEAGUE OF LEGENDS
+  ======================= */
   {
     id: 'league',
     name: 'League of Legends',
     bgColor: 'rgb(20, 50, 80)',
     accentColor: 'rgb(200, 150, 100)',
     icon: 'sword',
+
     products: [
-      { id: 'lol-b-1', name: 'Runeterra 2', category: 'Boosters' },
-      { id: 'lol-b-2', name: 'Runeterra', category: 'Boosters' },
-      { id: 'lol-p-1', name: 'Coffret Ahri', category: 'Pack / Coffrets' },
-      { id: 'lol-c-1', name: 'Ahri K/DA', category: 'Cartes à l\'unité' },
-      { id: 'lol-d-1', name: 'Deck Noxus', category: 'Decks préconstruits' },
+      { id: 'lol-pack-1', name: 'Coffret Ahri', category: 'Pack / Coffrets' },
+      { id: 'lol-card-1', name: 'Ahri K/DA', category: 'Cartes à l\'unité' },
+      { id: 'lol-deck-1', name: 'Deck Noxus', category: 'Decks préconstruits' },
     ],
   },
 ];
@@ -129,17 +296,15 @@ export const getThemeById = (id: string): ThemeConfig | undefined => {
   return themes.find(t => t.id === id);
 };
 
-export const getProductsByCategory = (themeId: string, category: string) => {
+export const getProductsByCategory = (themeId: string, category: string): Product[] => {
   const theme = getThemeById(themeId);
   if (!theme) return [];
-  
   return theme.products.filter(p => p.category === category);
 };
 
-export const getCategoriesByTheme = (themeId: string) => {
+export const getCategoriesByTheme = (themeId: string): string[] => {
   const theme = getThemeById(themeId);
   if (!theme) return [];
-  
-  const cats = new Set(theme.products.map(p => p.category));
-  return Array.from(cats);
+  const categories = new Set(theme.products.map(p => p.category));
+  return Array.from(categories);
 };

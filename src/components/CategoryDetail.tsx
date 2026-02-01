@@ -1,14 +1,21 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { getThemeById, getProductsByCategory } from '../data/products';
 
 export default function CategoryDetail() {
   const { themeId, category } = useParams<{ themeId: string; category: string }>();
+  const navigate = useNavigate();
 
   if (!themeId || !category) return <div>Page non trouvée</div>;
 
   const theme = getThemeById(themeId);
   if (!theme) return <div>Thème inexistant</div>;
+
+  // Rediriger les Boosters Pokemon vers BoosterSetDetail
+  if (category === 'Boosters' && themeId === 'pokemon' && theme.boosterSets) {
+    navigate(`/theme/${themeId}/boosters`);
+    return null;
+  }
 
   const products = getProductsByCategory(themeId, decodeURIComponent(category));
 

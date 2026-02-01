@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.tsx';
 import CategoryDetail from './components/CategoryDetail.tsx';
+import BoosterSetDetail from './components/BoosterSetDetail.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -10,6 +11,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter basename="/grandlin">
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/theme/:themeId/boosters" element={<BoosterSetDetail />} />
         <Route path="/theme/:themeId/:category" element={<CategoryDetail />} />
       </Routes>
     </BrowserRouter>
