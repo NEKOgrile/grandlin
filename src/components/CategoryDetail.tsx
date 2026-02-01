@@ -1,10 +1,9 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { getThemeById, getProductsByCategory } from '../data/products';
 
 export default function CategoryDetail() {
   const { themeId, category } = useParams<{ themeId: string; category: string }>();
-  const navigate = useNavigate();
 
   if (!themeId || !category) return <div>Page non trouvée</div>;
 
@@ -24,13 +23,13 @@ export default function CategoryDetail() {
     >
       {/* Bouton retour sticky en haut */}
       <div className="sticky top-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/10 px-6 py-4">
-        <button
-          onClick={() => navigate('/')}
+        <a
+          href="/grandlin/"
           className="inline-flex items-center gap-2 text-white hover:text-[#F5F9FC] transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
           Retour à l'accueil
-        </button>
+        </a>
       </div>
 
       {/* Header */}

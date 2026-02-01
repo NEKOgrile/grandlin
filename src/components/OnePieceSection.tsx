@@ -25,12 +25,12 @@ export default function OnePieceSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {categories.map((category, index) => (
             <div
               key={index}
               onClick={() => navigate(`/theme/onepiece/${encodeURIComponent(category.name)}`)}
-              className="group relative z-20 bg-[#0B3C5D]/40 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/15 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105 last:col-span-2 md:last:col-span-1 cursor-pointer"
+              className="group bg-[#0B3C5D]/50 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/10 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105 cursor-pointer"
             >
               <div className="bg-[#051923]/60 rounded-lg h-48 mb-4 flex items-center justify-center">
                 <Anchor className="w-16 h-16 text-[#26C6DA]/60 group-hover:text-[#26C6DA] transition-colors duration-300" />
