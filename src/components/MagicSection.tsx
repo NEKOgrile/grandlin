@@ -28,15 +28,15 @@ export default function MagicSection() {
             <div
               key={index}
               onClick={() => navigate(`/theme/magic/${encodeURIComponent(category.name)}`)}
-              className="group bg-[#3D2C5F]/50 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/10 hover:border-[#9664C8] transition-all duration-500 hover:scale-105 cursor-pointer"
+              className="group bg-[#1E4F6F]/40 backdrop-blur-sm rounded-xl p-4 border border-[#F5F9FC]/10 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105 cursor-pointer"
             >
-              <div className="bg-[#051923]/60 rounded-lg h-48 mb-4 flex items-center justify-center">
-                <Wand2 className="w-16 h-16 text-[#26C6DA]/60 group-hover:text-[#26C6DA] transition-colors duration-300" />
+              <div className="bg-[#0F3A52]/40 rounded-lg h-32 mb-3 flex items-center justify-center">
+                <Wand2 className="w-12 h-12 text-[#26C6DA]/50 group-hover:text-[#26C6DA] transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold text-[#F5F9FC] mb-2">
+              <h3 className="text-lg font-semibold text-[#F5F9FC] mb-1">
                 {category.name}
               </h3>
-              <p className="text-[#F5F9FC]/70">{category.desc}</p>
+              <p className="text-sm text-[#F5F9FC]/70">{category.desc}</p>
             </div>
           ))}
         </div>

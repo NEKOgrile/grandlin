@@ -102,7 +102,7 @@ export default function OnePieceSpawner() {
 
   // Place submarine behind content (negative z-index) so cards stay in front
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-visible" style={{ zIndex: -3 }}>
+    <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -3 }}>
       <div
         className={`sub-wrap ${sub.direction === 'left' ? 'sub-swim-left' : 'sub-swim-right'}`}
         style={{
