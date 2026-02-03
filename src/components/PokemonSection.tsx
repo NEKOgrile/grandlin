@@ -30,7 +30,7 @@ export default function PokemonSection() {
           {categories.map((category, index) => (
             <div
               key={index}
-              onClick={() => navigate(`/theme/pokemon/${encodeURIComponent(category.name)}`)}
+              onClick={() => navigate(`/theme/pokemon/${encodeURIComponent(category.name)}`, { state: { scrollToTop: true } })}
               className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-4 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20 cursor-pointer"
             >
               <div className="bg-[#0B3C5D]/50 rounded-xl h-32 mb-3 flex items-center justify-center">

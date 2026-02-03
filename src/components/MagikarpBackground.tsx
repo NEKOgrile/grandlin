@@ -55,9 +55,9 @@ export default function MagikarpBackground() {
           magikarp.direction === 'left'
             ? 'animate-move-left'
             : 'animate-move-right';
-        const imageSrc = magikarp.isShiny
-          ? './src/image/pokemon-magikarp-shiny.png'
-          : './src/image/pokemon-magikarp.png';
+        const imageSrc = encodeURI(
+          import.meta.env.BASE_URL + (magikarp.isShiny ? 'pokemon-magikarp-shiny.png' : 'pokemon-magikarp.png')
+        );
 
         return (
           <div

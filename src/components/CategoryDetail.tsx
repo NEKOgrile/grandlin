@@ -1,4 +1,5 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { getThemeById, getProductsByCategory } from '../data/products';
 
@@ -11,9 +12,18 @@ export default function CategoryDetail() {
   const theme = getThemeById(themeId);
   if (!theme) return <div>Thème inexistant</div>;
 
+  const location = useLocation();
+
+  // Scroll to top when navigation requested it
+  useEffect(() => {
+    if (location.state && (location.state as any).scrollToTop) {
+      setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
+    }
+  }, [location]);
+
   // Rediriger les Boosters Pokemon vers BoosterSetDetail
   if (category === 'Boosters' && themeId === 'pokemon' && theme.boosterSets) {
-    navigate(`/theme/${themeId}/boosters`);
+    navigate(`/theme/${themeId}/boosters`, { state: { scrollToTop: true } });
     return null;
   }
 
@@ -28,6 +38,15 @@ export default function CategoryDetail() {
       className="min-h-screen transition-colors duration-500"
       style={{ backgroundColor: theme.bgColor }}
     >
+      {/* Scroll to top if navigation requested it */}
+      {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+      {(() => {
+        const location = useLocation();
+        if (location.state && (location.state as any).scrollToTop) {
+          setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
+        }
+        return null;
+      })()}
       {/* Bouton retour sticky en haut */}
       <div className="sticky top-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/10 px-6 py-4">
         <a

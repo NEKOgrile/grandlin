@@ -67,7 +67,7 @@ export default function DorySpawner() {
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <img
         key={dory.id}
-        src="./dorie_nemo.png"
+        src={import.meta.env.BASE_URL + 'dorie_nemo.png'}
         alt="Dory"
         className={`absolute w-16 h-16 ${dory.direction === 'left' ? 'dory-swim-left' : 'dory-swim-right'}`}
         style={{

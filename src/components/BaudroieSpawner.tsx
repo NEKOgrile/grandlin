@@ -65,7 +65,7 @@ export default function BaudroieSpawner() {
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <img
         key={baudroie.id}
-        src="./Baudroie _nemo.png"
+        src={encodeURI(import.meta.env.BASE_URL + 'Baudroie _nemo.png')}
         alt="Baudroie"
         className={`absolute w-32 h-32 ${baudroie.direction === 'left' ? 'baudroie-swim-left' : 'baudroie-swim-right'}`}
         style={{

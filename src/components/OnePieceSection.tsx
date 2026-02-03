@@ -12,7 +12,7 @@ export default function OnePieceSection() {
   ];
 
   return (
-    <section className="relative py-16 px-6 overflow-hidden" style={{ zIndex: 10 }}>
+    <section className="relative py-16 px-6" style={{ zIndex: 10, overflow: 'visible' }}>
       <OnePieceSpawner />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">

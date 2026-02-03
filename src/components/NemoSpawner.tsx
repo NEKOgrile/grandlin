@@ -60,7 +60,7 @@ export default function NemoSpawner() {
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <img
         key={nemo.id}
-        src="./3_nemo.png"
+        src={import.meta.env.BASE_URL + '3_nemo.png'}
         alt="Nemo"
         className={`absolute w-96 h-96 object-contain ${nemo.direction === 'left' ? 'nemo-swim-left' : 'nemo-swim-right'}`}
         style={{

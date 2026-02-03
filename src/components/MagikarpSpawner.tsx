@@ -118,7 +118,7 @@ export default function MagikarpSpawner() {
           onAnimationEnd={() => handleAnimationEnd(magikarp.id)}
         >
           <img
-            src={magikarp.isShiny ? './pokemon-magikarp-shiny.png' : './pokemon-magikarp.png'}
+            src={encodeURI(import.meta.env.BASE_URL + (magikarp.isShiny ? 'pokemon-magikarp-shiny.png' : 'pokemon-magikarp.png'))}
             alt="Magikarp"
             style={{
               height: '64px',

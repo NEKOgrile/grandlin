@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { getThemeById } from '../data/products';
 
@@ -9,6 +10,14 @@ export default function BoosterSetDetail() {
 
   const theme = getThemeById(themeId);
   if (!theme || !theme.boosterSets) return <div>Thème inexistant</div>;
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && (location.state as any).scrollToTop) {
+      setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), 0);
+    }
+  }, [location]);
 
   return (
     <div

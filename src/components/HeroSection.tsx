@@ -25,7 +25,7 @@ export default function HeroSection({ scrollDepth }: HeroSectionProps) {
         }}
       >
         <img
-          src="./image.png"
+          src={import.meta.env.BASE_URL + 'image.png'}
           alt="GRANDLINE"
           className="w-full max-w-3xl mx-auto mb-6 drop-shadow-2xl"
         />

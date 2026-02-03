@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Waves } from 'lucide-react';
+import useScrollRestoration from './hooks/useScrollRestoration';
 import PokemonSection from './components/PokemonSection';
 import MagicSection from './components/MagicSection';
 import OnePieceSection from './components/OnePieceSection';
@@ -8,9 +9,13 @@ import DragonBallSection from './components/DragonBallSection';
 import LeagueSection from './components/LeagueSection';
 import ContactSection from './components/ContactSection';
 import BubbleSpawner from './components/BubbleSpawner';
+import Footer from './components/Footer';
 
 function App() {
   const [scrollDepth, setScrollDepth] = useState(0);
+
+  // manage scroll on navigation: scroll to top on new navigation, restore on back
+  useScrollRestoration();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +61,7 @@ function App() {
       <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
         <div className="relative z-10 text-center px-6">
           <img
-            src="./image.png"
+            src={import.meta.env.BASE_URL + 'image.png'}
             alt="GRANDLINE"
             className="w-full max-w-3xl mx-auto mb-6 drop-shadow-2xl"
           />
@@ -82,6 +87,7 @@ function App() {
       <DragonBallSection />
       <LeagueSection />
       <ContactSection />
+      <Footer />
     </div>
   );
 }
