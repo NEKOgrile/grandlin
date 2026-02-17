@@ -6,10 +6,10 @@ export default function PokemonSection() {
   const navigate = useNavigate();
 
   const categories = [
-    { name: 'Boosters', desc: 'Évolution Écarlate & Violet', img: 'images/products/pokemon/booster-pack.svg' },
-    { name: 'Pack / Coffrets', desc: 'Collections exclusives', img: 'images/products/pokemon/coffret.svg' },
-    { name: 'Cartes à l\'unité', desc: 'Rares et ultra-rares', img: 'images/products/pokemon/single-card.svg' },
-    { name: 'Decks préconstruits', desc: 'Prêts à jouer', img: 'images/products/pokemon/deck.svg' },
+    { name: 'Boosters', desc: 'Évolution Écarlate & Violet', img: 'booster_pokemon.png' },
+    { name: 'Pack / Coffrets', desc: 'Collections exclusives', img: 'coffret_pokemon.png' },
+    { name: 'Cartes à l\'unité', desc: 'Rares et ultra-rares', img: 'carte_pokemon.png' },
+    { name: 'Decks préconstruits', desc: 'Prêts à jouer', img: 'decks_pokemon.png' },
   ];
 
   return (
