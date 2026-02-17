@@ -33,11 +33,11 @@ export default function PokemonSection() {
               onClick={() => navigate(`/theme/pokemon/${encodeURIComponent(category.name)}`, { state: { scrollToTop: true } })}
               className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-4 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20 cursor-pointer"
             >
-              <div className="bg-[#0B3C5D]/50 rounded-xl h-40 md:h-44 mb-3 flex items-center justify-center overflow-hidden">
+              <div className="bg-[#0B3C5D]/50 rounded-xl h-40 md:h-44 mb-3 overflow-hidden relative">
                 <img
                   src={encodeURI(import.meta.env.BASE_URL + category.img)}
                   alt={category.name}
-                  className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <h3 className="text-lg font-semibold text-[#F5F9FC] mb-1">
