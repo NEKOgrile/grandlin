@@ -17,7 +17,7 @@ export default function ContactSection() {
             <h3 className="text-lg font-semibold text-[#F5F9FC] mb-2">
               Téléphone
             </h3>
-            <p className="text-[#F5F9FC]/80">01 23 45 67 89</p>
+            <p className="text-[#F5F9FC]/80 whitespace-nowrap">01 23 45 67 89</p>
           </div>
 
           <div className="bg-[#0B3C5D]/40 backdrop-blur-sm rounded-xl p-6 border border-[#F5F9FC]/10">

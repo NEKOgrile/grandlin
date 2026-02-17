@@ -100,7 +100,7 @@ export default function BoosterSetDetail() {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl w-full">
                           <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
                             <Phone className="w-5 h-5 text-[#80DEEA] mb-2" />
-                            <div className="text-sm text-[#F5F9FC]">Téléphone: 01 23 45 67 89</div>
+                            <div className="text-sm text-[#F5F9FC] whitespace-nowrap">Téléphone: 01 23 45 67 89</div>
                           </div>
                           <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
                             <MapPin className="w-5 h-5 text-[#80DEEA] mb-2" />
@@ -143,7 +143,7 @@ export default function BoosterSetDetail() {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl w-full">
                       <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
                         <Phone className="w-5 h-5 text-[#80DEEA] mb-2" />
-                        <div className="text-sm text-[#F5F9FC]">Téléphone: 01 23 45 67 89</div>
+                        <div className="text-sm text-[#F5F9FC] whitespace-nowrap">Téléphone: 01 23 45 67 89</div>
                       </div>
                       <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
                         <MapPin className="w-5 h-5 text-[#80DEEA] mb-2" />
