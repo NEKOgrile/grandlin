@@ -31,7 +31,10 @@ export default function CategoryDetail() {
   const products = getProductsByCategory(themeId, decodedCategory);
 
   // Special layout for Pokémon single cards, decks and coffrets: centered contact + map
-  if ((decodedCategory === 'Cartes à l\'unité' || decodedCategory === 'Decks préconstruits' || decodedCategory === 'Pack / Coffrets') && themeId === 'pokemon') {
+  const showContactLayout = (decodedCategory === 'Cartes à l\'unité' || decodedCategory === 'Decks préconstruits' || decodedCategory === 'Pack / Coffrets') && themeId === 'pokemon';
+  const showContactBanner = decodedCategory === 'Boosters' || decodedCategory === 'Cartes à l\'unité' || decodedCategory === 'Decks préconstruits' || decodedCategory === 'Pack / Coffrets';
+
+  if (showContactLayout) {
     const isCards = decodedCategory === 'Cartes à l\'unité';
     const isDecks = decodedCategory === 'Decks préconstruits';
     const title = isCards ? 'Cartes à l\'unité' : isDecks ? 'Decks préconstruits' : 'Pack / Coffrets';
@@ -186,12 +189,12 @@ export default function CategoryDetail() {
         </div>
       </section>
 
-      {themeId === 'magic' && (
+      {showContactBanner && (
         <>
           <div className="mt-6">
             <div className="bg-[#051923]/60 backdrop-blur-sm rounded-2xl p-6 border border-[#F5F9FC]/10 mx-0 md:mx-4">
               <div className="max-w-7xl mx-auto text-center">
-                <p className="text-lg text-[#F5F9FC]/80 mb-4">Si vous ne trouvez pas un produit Magic listé ici ou pour les nouveautés récentes, contactez le vendeur ou rendez-vous en boutique — nous pouvons vous renseigner et réserver des produits.</p>
+                <p className="text-lg text-[#F5F9FC]/80 mb-4">Si vous ne trouvez pas un produit listé ici ou pour les nouveautés récentes, contactez le vendeur ou rendez-vous en boutique — nous pouvons vous renseigner et réserver des produits.</p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl w-full">

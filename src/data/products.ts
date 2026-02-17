@@ -150,45 +150,8 @@ export const themes: ThemeConfig[] = [
   },
 
   /* =======================
-      DISNEY
+      MAGIC
   ======================= */
-  {
-    id: 'disney',
-    name: 'Disney',
-    bgColor: 'rgb(25, 40, 80)',
-    accentColor: 'rgb(255, 160, 0)',
-    icon: 'star',
-
-    boosterSets: [
-      {
-        id: 'dis-set-01',
-        name: 'Classic Collection',
-        code: 'DIS01',
-        products: [
-          { id: 'dis-01-b1', name: 'Booster Classic Disney', category: 'Boosters', set: 'DIS01', image: 'booster_magic.png' },
-        ],
-      },
-      {
-        id: 'dis-set-02',
-        name: 'Heroes & Villains',
-        code: 'DIS02',
-        products: [
-          { id: 'dis-02-b1', name: 'Booster Heroes & Villains', category: 'Boosters', set: 'DIS02', image: 'booster_magic.png' },
-        ],
-      },
-    ],
-
-    products: [
-      { id: 'dis-pack-1', name: 'Coffret Mickey', category: 'Pack / Coffrets', image: 'coffret_magic.png' },
-      { id: 'dis-pack-2', name: 'Coffret Princess', category: 'Pack / Coffrets', image: 'coffret_magic.png' },
-
-      { id: 'dis-card-1', name: 'Mickey Collector', category: 'Cartes à l\'unité', image: 'carte-magic.png' },
-      { id: 'dis-card-2', name: 'Elsa Holo', category: 'Cartes à l\'unité', image: 'carte-magic.png' },
-
-      { id: 'dis-deck-1', name: 'Deck Aventuriers', category: 'Decks préconstruits', image: 'deck_magic.png' },
-      { id: 'dis-deck-2', name: 'Deck Villains', category: 'Decks préconstruits', image: 'deck_magic.png' },
-    ],
-  },
 
   /* =======================
       MAGIC
@@ -236,10 +199,22 @@ export const themes: ThemeConfig[] = [
     accentColor: 'rgb(0, 188, 212)',
     icon: 'zap',
 
+    boosterSets: [
+      {
+        id: 'dbz-set-01',
+        name: 'Super Saiyajin',
+        code: 'DBZ01',
+        products: [
+          { id: 'dbz-ssj-b1', name: 'Booster Super Saiyajin', category: 'Boosters', set: 'DBZ01', image: 'booster_dbz.png' },
+        ],
+      },
+    ],
+
     products: [
-      { id: 'db-pack-1', name: 'Coffret Goku', category: 'Pack / Coffrets' },
-      { id: 'db-card-1', name: 'Goku Ultra Instinct', category: 'Cartes à l\'unité' },
-      { id: 'db-deck-1', name: 'Deck Saiyan', category: 'Decks préconstruits' },
+      { id: 'dbz-ssj-b1', name: 'Booster Super Saiyajin', category: 'Boosters', set: 'DBZ01', image: 'booster_dbz.png' },
+      { id: 'db-pack-1', name: 'Coffret Goku', category: 'Pack / Coffrets', image: 'coffret_dbz.png' },
+      { id: 'db-card-1', name: 'Goku Ultra Instinct', category: 'Cartes à l\'unité', image: 'carte_dbz.png' },
+      { id: 'db-deck-1', name: 'Deck Saiyan', category: 'Decks préconstruits', image: 'deck_dbz.png' },
     ],
   },
 
@@ -253,10 +228,21 @@ export const themes: ThemeConfig[] = [
     accentColor: 'rgb(100, 200, 255)',
     icon: 'sparkles',
 
+    boosterSets: [
+      {
+        id: 'lor-set-01',
+        name: 'Aether Chronicles',
+        code: 'LOR01',
+        products: [
+          { id: 'lor-lor01-b1', name: 'Booster Aether Chronicles', category: 'Boosters', set: 'LOR01', image: 'booster_disney.png' },
+        ],
+      },
+    ],
+
     products: [
-      { id: 'lor-pack-1', name: 'Coffret Ariel', category: 'Pack / Coffrets' },
-      { id: 'lor-card-1', name: 'Ariel Illustrée', category: 'Cartes à l\'unité' },
-      { id: 'lor-deck-1', name: 'Deck Magie Bleue', category: 'Decks préconstruits' },
+      { id: 'lor-pack-1', name: 'Coffret Ariel', category: 'Pack / Coffrets', image: 'coffret_disney.png' },
+      { id: 'lor-card-1', name: 'Ariel Illustrée', category: 'Cartes à l\'unité', image: 'carte_disney.png' },
+      { id: 'lor-deck-1', name: 'Deck Magie Bleue', category: 'Decks préconstruits', image: 'deck_disney.png' },
     ],
   },
 

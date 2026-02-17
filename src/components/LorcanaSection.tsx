@@ -5,10 +5,10 @@ import NemoSpawner from './NemoSpawner';
 export default function LorcanaSection() {
   const navigate = useNavigate();
   const categories = [
-    { name: 'Boosters', desc: 'Éditions enchantées' },
-    { name: 'Pack / Coffrets', desc: 'Collections premium' },
-    { name: 'Cartes à l\'unité', desc: 'Cartes rares' },
-    { name: 'Decks préconstruits', desc: 'Prêts à jouer' },
+    { name: 'Boosters', desc: 'Éditions enchantées', img: 'booster_disney.png' },
+    { name: 'Pack / Coffrets', desc: 'Collections premium', img: 'coffret_disney.png' },
+    { name: 'Cartes à l\'unité', desc: 'Cartes rares', img: 'carte_disney.png' },
+    { name: 'Decks préconstruits', desc: 'Prêts à jouer', img: 'deck_disney.png' },
   ];
 
   return (
@@ -32,8 +32,12 @@ export default function LorcanaSection() {
               onClick={() => navigate(`/theme/lorcana/${encodeURIComponent(category.name)}`)}
               className="group bg-[#051923]/50 backdrop-blur-sm rounded-xl p-4 border border-[#F5F9FC]/10 hover:border-[#00BCD4] transition-all duration-500 hover:scale-105 cursor-pointer"
             >
-              <div className="bg-[#0B3C5D]/40 rounded-lg h-32 mb-3 flex items-center justify-center">
-                <Castle className="w-12 h-12 text-[#00BCD4]/50 group-hover:text-[#00BCD4] transition-colors duration-300" />
+              <div className="bg-[#0B3C5D]/40 rounded-lg h-40 md:h-44 mb-3 overflow-hidden relative">
+                <img
+                  src={encodeURI(import.meta.env.BASE_URL + category.img)}
+                  alt={category.name}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               <h3 className="text-lg font-semibold text-[#F5F9FC] mb-1">
                 {category.name}
