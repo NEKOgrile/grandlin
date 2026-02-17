@@ -30,8 +30,14 @@ export default function CategoryDetail() {
   const decodedCategory = decodeURIComponent(category);
   const products = getProductsByCategory(themeId, decodedCategory);
 
-  if (decodedCategory === 'Cartes à l\'unité' && themeId === 'pokemon') {
-    // Special layout for Pokémon single cards: centered contact + map
+  // Special layout for Pokémon single cards and decks: centered contact + map
+  if ((decodedCategory === 'Cartes à l\'unité' || decodedCategory === 'Decks préconstruits') && themeId === 'pokemon') {
+    const isCards = decodedCategory === 'Cartes à l\'unité';
+    const title = isCards ? 'Cartes à l\'unité' : 'Decks préconstruits';
+    const subtitle = isCards
+      ? "Toutes les cartes sont présentées en magasin. Pour des recherches spécifiques, contactez le vendeur."
+      : "Nos decks préconstruits sont disponibles en boutique. Pour disponibilité et conseils, contactez le vendeur.";
+
     return (
       <div
         className="min-h-screen transition-colors duration-500"
@@ -50,31 +56,32 @@ export default function CategoryDetail() {
         <section className="relative py-12 px-6">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-[#F5F9FC] mb-3">{theme.name}</h1>
-            <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F9FC]/80 mb-8">Cartes à l'unité</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F9FC]/80 mb-8">{title}</h2>
 
             <div className="bg-[#051923]/60 backdrop-blur-sm rounded-2xl p-8 border border-[#F5F9FC]/10 mx-4 md:mx-0">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 <div className="text-center md:text-left px-4 py-6">
-                  <h3 className="text-2xl font-semibold text-[#F5F9FC] mb-4">Toutes les cartes sont présentées en magasin</h3>
-                  <p className="text-[#F5F9FC]/70 mb-6">Vous trouverez l'intégralité de nos cartes à l'unité directement en boutique. Pour des informations détaillées ou des recherches spécifiques, contactez le vendeur — nous serons ravis de vous aider.</p>
+                  <h3 className="text-2xl font-semibold text-[#F5F9FC] mb-4">{isCards ? 'Toutes les cartes sont présentées en magasin' : 'Decks disponibles en boutique'}</h3>
+                  <p className="text-[#F5F9FC]/70 mb-6">{subtitle}</p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-md mx-auto md:mx-0 mb-6">
                     <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
                       <Phone className="w-6 h-6 text-[#80DEEA] mb-2" />
-                      <div className="text-sm text-[#F5F9FC]">01 23 45 67 89</div>
+                      <div className="text-sm text-[#F5F9FC]">Téléphone: 01 23 45 67 89</div>
                     </div>
                     <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
                       <MapPin className="w-6 h-6 text-[#80DEEA] mb-2" />
-                      <div className="text-sm text-[#F5F9FC]">123 Rue des Cartes<br/>75001 Paris</div>
+                      <div className="text-sm text-[#F5F9FC]">16 Rue Croix Verte<br/>81000 Albi</div>
                     </div>
                     <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
                       <Clock className="w-6 h-6 text-[#80DEEA] mb-2" />
-                      <div className="text-sm text-[#F5F9FC]">Lun-Sam: 10h–19h</div>
+                      <div className="text-sm text-[#F5F9FC]">Mar-Sam: 11h–19h</div>
                     </div>
                   </div>
 
-                  <div className="flex justify-center md:justify-start">
+                  <div className="flex justify-center md:justify-start gap-3">
                     <a href="tel:0123456789" className="inline-flex items-center gap-3 bg-[#80DEEA] hover:bg-[#4DD0E1] text-[#051923] font-semibold px-6 py-3 rounded-xl transition-all">Contacter le magasin</a>
+                    <a href="https://www.instagram.com/gran_dlin" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-white/10 text-white/80 px-4 py-3 rounded-xl">Instagram</a>
                   </div>
                 </div>
 
@@ -82,7 +89,7 @@ export default function CategoryDetail() {
                   <div className="rounded-lg overflow-hidden border border-white/10 shadow-lg">
                     <iframe
                       title="Localisation magasin"
-                      src={`https://maps.google.com/maps?q=${encodeURIComponent('123 Rue des Cartes 75001 Paris')}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent('16 Rue Croix Verte 81000 Albi')}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
                       className="w-full h-56 md:h-64"
                       loading="lazy"
                     />

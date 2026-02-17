@@ -1,6 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Phone, MapPin, Clock } from 'lucide-react';
 import { getThemeById } from '../data/products';
 
 export default function BoosterSetDetail() {
@@ -88,6 +88,48 @@ export default function BoosterSetDetail() {
                   </div>
                 ))}
               </div>
+
+              {/* NOTE / Contact banner specifically under the 'XY' set for Pokémon */}
+              {theme.id === 'pokemon' && set.id === 'pok-era-xy' && (
+                <div className="mt-6">
+                  <div className="bg-[#051923]/60 backdrop-blur-sm rounded-2xl p-6 border border-[#F5F9FC]/10 mx-0 md:mx-4">
+                    <div className="max-w-7xl mx-auto text-center">
+                      <p className="text-lg text-[#F5F9FC]/80 mb-4">Si vous ne trouvez pas un booster listé ici ou pour les nouveautés récentes, contactez le vendeur ou rendez-vous en boutique — nous pouvons vous renseigner et réserver des produits.</p>
+
+                      <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl w-full">
+                          <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
+                            <Phone className="w-5 h-5 text-[#80DEEA] mb-2" />
+                            <div className="text-sm text-[#F5F9FC]">Téléphone: 01 23 45 67 89</div>
+                          </div>
+                          <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
+                            <MapPin className="w-5 h-5 text-[#80DEEA] mb-2" />
+                            <div className="text-sm text-[#F5F9FC]">16 Rue Croix Verte<br/>81000 Albi</div>
+                          </div>
+                          <div className="bg-[#0B3C5D]/30 rounded-lg p-4 flex flex-col items-center">
+                            <Clock className="w-5 h-5 text-[#80DEEA] mb-2" />
+                            <div className="text-sm text-[#F5F9FC]">Mar-Sam: 11h–19h</div>
+                          </div>
+                        </div>
+
+                        <div className="w-full md:w-1/3 rounded-lg overflow-hidden border border-white/10 shadow-lg">
+                          <iframe
+                            title="Localisation magasin"
+                            src={`https://maps.google.com/maps?q=${encodeURIComponent('16 Rue Croix Verte 81000 Albi')}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                            className="w-full h-40"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="mt-4">
+                        <a href="tel:0123456789" className="inline-flex items-center gap-3 bg-[#80DEEA] hover:bg-[#4DD0E1] text-[#051923] font-semibold px-5 py-2 rounded-xl transition-all">Contacter le magasin</a>
+                        <a href="https://www.instagram.com/gran_dlin" target="_blank" rel="noreferrer" className="ml-3 inline-flex items-center gap-2 border border-white/10 text-white/80 px-4 py-2 rounded-xl">Instagram</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
