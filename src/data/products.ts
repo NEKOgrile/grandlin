@@ -165,7 +165,7 @@ export const themes: ThemeConfig[] = [
         name: 'Wilds of Eldraine',
         code: 'WOE',
         products: [
-          { id: 'mtg-woe-b1', name: 'Booster Wilds of Eldraine', category: 'Boosters', set: 'WOE' },
+          { id: 'mtg-woe-b1', name: 'Booster Wilds of Eldraine', category: 'Boosters', set: 'WOE', image: 'booster_magic.png' },
         ],
       },
       {
@@ -173,15 +173,15 @@ export const themes: ThemeConfig[] = [
         name: 'March of the Machine',
         code: 'MOM',
         products: [
-          { id: 'mtg-mom-b1', name: 'Booster March of the Machine', category: 'Boosters', set: 'MOM' },
+          { id: 'mtg-mom-b1', name: 'Booster March of the Machine', category: 'Boosters', set: 'MOM', image: 'booster_magic.png' },
         ],
       },
     ],
 
     products: [
-      { id: 'mtg-pack-1', name: 'Coffret Planeswalker', category: 'Pack / Coffrets' },
-      { id: 'mtg-card-1', name: 'Black Lotus', category: 'Cartes à l\'unité' },
-      { id: 'mtg-deck-1', name: 'Deck Azorius Control', category: 'Decks préconstruits' },
+      { id: 'mtg-pack-1', name: 'Coffret Planeswalker', category: 'Pack / Coffrets', image: 'coffret_magic.png' },
+      { id: 'mtg-card-1', name: 'Black Lotus', category: 'Cartes à l\'unité', image: 'carte-magic.png' },
+      { id: 'mtg-deck-1', name: 'Deck Azorius Control', category: 'Decks préconstruits', image: 'deck_magic.png' },
     ],
   },
 
