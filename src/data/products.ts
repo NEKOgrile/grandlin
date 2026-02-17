@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   category: 'Boosters' | 'Pack / Coffrets' | 'Cartes à l\'unité' | 'Decks préconstruits';
   set?: string;
+  image?: string; // relative path under public/ (e.g. 'booster_pokemon.png')
 }
 
 export interface BoosterSet {
@@ -42,10 +43,10 @@ export const themes: ThemeConfig[] = [
       name: 'Méga-Évolution',
       code: 'MEGA',
       products: [
-        { id: 'pok-mega-1', name: 'XY – Évolution', category: 'Boosters', set: 'MEGA' },
-        { id: 'pok-mega-2', name: 'XY – Poings Furieux', category: 'Boosters', set: 'MEGA' },
-        { id: 'pok-mega-3', name: 'XY – Vigueur Spectrale', category: 'Boosters', set: 'MEGA' },
-        { id: 'pok-mega-4', name: 'XY – Impact des Destins', category: 'Boosters', set: 'MEGA' },
+        { id: 'pok-mega-1', name: 'XY – Évolution', category: 'Boosters', set: 'MEGA', image: 'booster_pokemon.png' },
+        { id: 'pok-mega-2', name: 'XY – Poings Furieux', category: 'Boosters', set: 'MEGA', image: 'booster_pokemon.png' },
+        { id: 'pok-mega-3', name: 'XY – Vigueur Spectrale', category: 'Boosters', set: 'MEGA', image: 'booster_pokemon.png' },
+        { id: 'pok-mega-4', name: 'XY – Impact des Destins', category: 'Boosters', set: 'MEGA', image: 'booster_pokemon.png' },
       ],
     },
 
@@ -57,11 +58,11 @@ export const themes: ThemeConfig[] = [
       name: 'Écarlate & Violet',
       code: 'SV',
       products: [
-        { id: 'pok-sv-1', name: 'Écarlate & Violet', category: 'Boosters', set: 'SV' },
-        { id: 'pok-sv-2', name: 'Évolutions à Paldea', category: 'Boosters', set: 'SV' },
-        { id: 'pok-sv-3', name: 'Flammes Obsidiennes', category: 'Boosters', set: 'SV' },
-        { id: 'pok-sv-4', name: 'Forces Temporelles', category: 'Boosters', set: 'SV' },
-        { id: 'pok-sv-5', name: 'Mascarade Crépusculaire', category: 'Boosters', set: 'SV' },
+        { id: 'pok-sv-1', name: 'Écarlate & Violet', category: 'Boosters', set: 'SV', image: 'booster_pokemon.png' },
+        { id: 'pok-sv-2', name: 'Évolutions à Paldea', category: 'Boosters', set: 'SV', image: 'booster_pokemon.png' },
+        { id: 'pok-sv-3', name: 'Flammes Obsidiennes', category: 'Boosters', set: 'SV', image: 'booster_pokemon.png' },
+        { id: 'pok-sv-4', name: 'Forces Temporelles', category: 'Boosters', set: 'SV', image: 'booster_pokemon.png' },
+        { id: 'pok-sv-5', name: 'Mascarade Crépusculaire', category: 'Boosters', set: 'SV', image: 'booster_pokemon.png' },
       ],
     },
 
@@ -73,11 +74,11 @@ export const themes: ThemeConfig[] = [
       name: 'Épée & Bouclier',
       code: 'SWSH',
       products: [
-        { id: 'pok-swsh-1', name: 'Épée & Bouclier', category: 'Boosters', set: 'SWSH' },
-        { id: 'pok-swsh-2', name: 'Voltage Éclatant', category: 'Boosters', set: 'SWSH' },
-        { id: 'pok-swsh-3', name: 'Styles de Combat', category: 'Boosters', set: 'SWSH' },
-        { id: 'pok-swsh-4', name: 'Règne de Glace', category: 'Boosters', set: 'SWSH' },
-        { id: 'pok-swsh-5', name: 'Évolution Céleste', category: 'Boosters', set: 'SWSH' },
+        { id: 'pok-swsh-1', name: 'Épée & Bouclier', category: 'Boosters', set: 'SWSH', image: 'booster_pokemon.png' },
+        { id: 'pok-swsh-2', name: 'Voltage Éclatant', category: 'Boosters', set: 'SWSH', image: 'booster_pokemon.png' },
+        { id: 'pok-swsh-3', name: 'Styles de Combat', category: 'Boosters', set: 'SWSH', image: 'booster_pokemon.png' },
+        { id: 'pok-swsh-4', name: 'Règne de Glace', category: 'Boosters', set: 'SWSH', image: 'booster_pokemon.png' },
+        { id: 'pok-swsh-5', name: 'Évolution Céleste', category: 'Boosters', set: 'SWSH', image: 'booster_pokemon.png' },
       ],
     },
 
@@ -89,10 +90,10 @@ export const themes: ThemeConfig[] = [
       name: 'Soleil & Lune',
       code: 'SM',
       products: [
-        { id: 'pok-sm-1', name: 'Soleil & Lune', category: 'Boosters', set: 'SM' },
-        { id: 'pok-sm-2', name: 'Gardiens Ascendants', category: 'Boosters', set: 'SM' },
-        { id: 'pok-sm-3', name: 'Ombres Ardentes', category: 'Boosters', set: 'SM' },
-        { id: 'pok-sm-4', name: 'Ultra-Prisme', category: 'Boosters', set: 'SM' },
+        { id: 'pok-sm-1', name: 'Soleil & Lune', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
+        { id: 'pok-sm-2', name: 'Gardiens Ascendants', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
+        { id: 'pok-sm-3', name: 'Ombres Ardentes', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
+        { id: 'pok-sm-4', name: 'Ultra-Prisme', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
       ],
     },
 
@@ -104,9 +105,9 @@ export const themes: ThemeConfig[] = [
       name: 'XY',
       code: 'XY',
       products: [
-        { id: 'pok-xy-1', name: 'XY', category: 'Boosters', set: 'XY' },
-        { id: 'pok-xy-2', name: 'Étincelles', category: 'Boosters', set: 'XY' },
-        { id: 'pok-xy-3', name: 'Rupture Turbo', category: 'Boosters', set: 'XY' },
+        { id: 'pok-xy-1', name: 'XY', category: 'Boosters', set: 'XY', image: 'booster_pokemon.png' },
+        { id: 'pok-xy-2', name: 'Étincelles', category: 'Boosters', set: 'XY', image: 'booster_pokemon.png' },
+        { id: 'pok-xy-3', name: 'Rupture Turbo', category: 'Boosters', set: 'XY', image: 'booster_pokemon.png' },
       ],
     },
 
@@ -118,9 +119,9 @@ export const themes: ThemeConfig[] = [
       name: 'Noir & Blanc',
       code: 'BW',
       products: [
-        { id: 'pok-bw-1', name: 'Noir & Blanc', category: 'Boosters', set: 'BW' },
-        { id: 'pok-bw-2', name: 'Puissances Émergentes', category: 'Boosters', set: 'BW' },
-        { id: 'pok-bw-3', name: 'Tempête Plasma', category: 'Boosters', set: 'BW' },
+        { id: 'pok-bw-1', name: 'Noir & Blanc', category: 'Boosters', set: 'BW', image: 'booster_pokemon.png' },
+        { id: 'pok-bw-2', name: 'Puissances Émergentes', category: 'Boosters', set: 'BW', image: 'booster_pokemon.png' },
+        { id: 'pok-bw-3', name: 'Tempête Plasma', category: 'Boosters', set: 'BW', image: 'booster_pokemon.png' },
       ],
     },
 
@@ -132,26 +133,26 @@ export const themes: ThemeConfig[] = [
       name: 'Promotions',
       code: 'PROMO',
       products: [
-        { id: 'pok-pro-1', name: 'Promo Ligue Pokémon', category: 'Boosters', set: 'PROMO' },
-        { id: 'pok-pro-2', name: 'Promo Coffret Spécial', category: 'Boosters', set: 'PROMO' },
+        { id: 'pok-pro-1', name: 'Promo Ligue Pokémon', category: 'Boosters', set: 'PROMO', image: 'booster_pokemon.png' },
+        { id: 'pok-pro-2', name: 'Promo Coffret Spécial', category: 'Boosters', set: 'PROMO', image: 'booster_pokemon.png' },
       ],
     },
   ],
 
   products: [
       // Coffrets
-      { id: 'pok-pack-1', name: 'Coffret Pikachu ex', category: 'Pack / Coffrets' },
-      { id: 'pok-pack-2', name: 'Coffret Charizard ex', category: 'Pack / Coffrets' },
-      { id: 'pok-pack-3', name: 'Coffret Premium Blastoise', category: 'Pack / Coffrets' },
+      { id: 'pok-pack-1', name: 'Coffret Pikachu ex', category: 'Pack / Coffrets', image: 'coffret_pokemon.png' },
+      { id: 'pok-pack-2', name: 'Coffret Charizard ex', category: 'Pack / Coffrets', image: 'coffret_pokemon.png' },
+      { id: 'pok-pack-3', name: 'Coffret Premium Blastoise', category: 'Pack / Coffrets', image: 'coffret_pokemon.png' },
 
       // Cartes à l'unité
-      { id: 'pok-card-1', name: 'Charizard ex', category: 'Cartes à l\'unité' },
-      { id: 'pok-card-2', name: 'Mewtwo ex Full Art', category: 'Cartes à l\'unité' },
-      { id: 'pok-card-3', name: 'Dragonite Rainbow Rare', category: 'Cartes à l\'unité' },
+      { id: 'pok-card-1', name: 'Charizard ex', category: 'Cartes à l\'unité', image: 'carte_pokemon.png' },
+      { id: 'pok-card-2', name: 'Mewtwo ex Full Art', category: 'Cartes à l\'unité', image: 'carte_pokemon.png' },
+      { id: 'pok-card-3', name: 'Dragonite Rainbow Rare', category: 'Cartes à l\'unité', image: 'carte_pokemon.png' },
 
       // Decks
-      { id: 'pok-deck-1', name: 'Deck Pikachu', category: 'Decks préconstruits' },
-      { id: 'pok-deck-2', name: 'Deck Feu Dragon', category: 'Decks préconstruits' },
+      { id: 'pok-deck-1', name: 'Deck Pikachu', category: 'Decks préconstruits', image: 'decks_pokemon.png' },
+      { id: 'pok-deck-2', name: 'Deck Feu Dragon', category: 'Decks préconstruits', image: 'decks_pokemon.png' },
     ],
   },
 

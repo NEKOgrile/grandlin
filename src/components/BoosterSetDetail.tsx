@@ -69,10 +69,18 @@ export default function BoosterSetDetail() {
                     key={product.id}
                     className="group bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 cursor-pointer"
                   >
-                    <div className="bg-black/30 rounded-lg h-24 mb-3 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-xs font-bold text-white/60">{set.code}</div>
-                      </div>
+                    <div className="bg-black/30 rounded-lg h-24 mb-3 flex items-center justify-center relative overflow-hidden">
+                      {product.image ? (
+                        <img
+                          src={encodeURI(import.meta.env.BASE_URL + product.image)}
+                          alt={product.name}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="text-center">
+                          <div className="text-xs font-bold text-white/60">{set.code}</div>
+                        </div>
+                      )}
                     </div>
                     <h4 className="text-sm font-semibold text-[#F5F9FC] line-clamp-2">
                       {product.name}

@@ -78,11 +78,19 @@ export default function CategoryDetail() {
                     borderLeft: `4px solid ${theme.accentColor}`,
                   }}
                 >
-                  <div className="text-center px-4">
-                    <p className="text-[#F5F9FC] font-semibold text-lg">
-                      {product.name}
-                    </p>
-                  </div>
+                  {product.image ? (
+                    <img
+                      src={encodeURI(import.meta.env.BASE_URL + product.image)}
+                      alt={product.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-center px-4">
+                      <p className="text-[#F5F9FC] font-semibold text-lg">
+                        {product.name}
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-lg font-semibold text-[#F5F9FC] mb-2">
                   {product.name}
