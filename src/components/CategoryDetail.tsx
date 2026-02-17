@@ -30,13 +30,16 @@ export default function CategoryDetail() {
   const decodedCategory = decodeURIComponent(category);
   const products = getProductsByCategory(themeId, decodedCategory);
 
-  // Special layout for Pokémon single cards and decks: centered contact + map
-  if ((decodedCategory === 'Cartes à l\'unité' || decodedCategory === 'Decks préconstruits') && themeId === 'pokemon') {
+  // Special layout for Pokémon single cards, decks and coffrets: centered contact + map
+  if ((decodedCategory === 'Cartes à l\'unité' || decodedCategory === 'Decks préconstruits' || decodedCategory === 'Pack / Coffrets') && themeId === 'pokemon') {
     const isCards = decodedCategory === 'Cartes à l\'unité';
-    const title = isCards ? 'Cartes à l\'unité' : 'Decks préconstruits';
+    const isDecks = decodedCategory === 'Decks préconstruits';
+    const title = isCards ? 'Cartes à l\'unité' : isDecks ? 'Decks préconstruits' : 'Pack / Coffrets';
     const subtitle = isCards
       ? "Toutes les cartes sont présentées en magasin. Pour des recherches spécifiques, contactez le vendeur."
-      : "Nos decks préconstruits sont disponibles en boutique. Pour disponibilité et conseils, contactez le vendeur.";
+      : isDecks
+      ? "Nos decks préconstruits sont disponibles en boutique. Pour disponibilité et conseils, contactez le vendeur."
+      : "Nos coffrets sont disponibles en boutique. Pour disponibilité et réservations, contactez le vendeur.";
 
     return (
       <div
@@ -61,7 +64,7 @@ export default function CategoryDetail() {
             <div className="bg-[#051923]/60 backdrop-blur-sm rounded-2xl p-8 border border-[#F5F9FC]/10 mx-4 md:mx-0">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                 <div className="text-center md:text-left px-4 py-6">
-                  <h3 className="text-2xl font-semibold text-[#F5F9FC] mb-4">{isCards ? 'Toutes les cartes sont présentées en magasin' : 'Decks disponibles en boutique'}</h3>
+                  <h3 className="text-2xl font-semibold text-[#F5F9FC] mb-4">{isCards ? 'Toutes les cartes sont présentées en magasin' : isDecks ? 'Decks disponibles en boutique' : 'Coffrets disponibles en boutique'}</h3>
                   <p className="text-[#F5F9FC]/70 mb-6">{subtitle}</p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-md mx-auto md:mx-0 mb-6">
