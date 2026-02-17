@@ -81,62 +81,6 @@ export const themes: ThemeConfig[] = [
         { id: 'pok-swsh-5', name: 'Évolution Céleste', category: 'Boosters', set: 'SWSH', image: 'booster_pokemon.png' },
       ],
     },
-
-    /* ======================
-        SOLEIL & LUNE
-    ====================== */
-    {
-      id: 'pok-era-sm',
-      name: 'Soleil & Lune',
-      code: 'SM',
-      products: [
-        { id: 'pok-sm-1', name: 'Soleil & Lune', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
-        { id: 'pok-sm-2', name: 'Gardiens Ascendants', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
-        { id: 'pok-sm-3', name: 'Ombres Ardentes', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
-        { id: 'pok-sm-4', name: 'Ultra-Prisme', category: 'Boosters', set: 'SM', image: 'booster_pokemon.png' },
-      ],
-    },
-
-    /* ======================
-        XY
-    ====================== */
-    {
-      id: 'pok-era-xy',
-      name: 'XY',
-      code: 'XY',
-      products: [
-        { id: 'pok-xy-1', name: 'XY', category: 'Boosters', set: 'XY', image: 'booster_pokemon.png' },
-        { id: 'pok-xy-2', name: 'Étincelles', category: 'Boosters', set: 'XY', image: 'booster_pokemon.png' },
-        { id: 'pok-xy-3', name: 'Rupture Turbo', category: 'Boosters', set: 'XY', image: 'booster_pokemon.png' },
-      ],
-    },
-
-    /* ======================
-        NOIR & BLANC
-    ====================== */
-    {
-      id: 'pok-era-bw',
-      name: 'Noir & Blanc',
-      code: 'BW',
-      products: [
-        { id: 'pok-bw-1', name: 'Noir & Blanc', category: 'Boosters', set: 'BW', image: 'booster_pokemon.png' },
-        { id: 'pok-bw-2', name: 'Puissances Émergentes', category: 'Boosters', set: 'BW', image: 'booster_pokemon.png' },
-        { id: 'pok-bw-3', name: 'Tempête Plasma', category: 'Boosters', set: 'BW', image: 'booster_pokemon.png' },
-      ],
-    },
-
-    /* ======================
-        PROMOS
-    ====================== */
-    {
-      id: 'pok-era-promo',
-      name: 'Promotions',
-      code: 'PROMO',
-      products: [
-        { id: 'pok-pro-1', name: 'Promo Ligue Pokémon', category: 'Boosters', set: 'PROMO', image: 'booster_pokemon.png' },
-        { id: 'pok-pro-2', name: 'Promo Coffret Spécial', category: 'Boosters', set: 'PROMO', image: 'booster_pokemon.png' },
-      ],
-    },
   ],
 
   products: [

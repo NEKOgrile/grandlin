@@ -89,8 +89,8 @@ export default function BoosterSetDetail() {
                 ))}
               </div>
 
-              {/* NOTE / Contact banner specifically under the 'XY' set for Pokémon */}
-              {theme.id === 'pokemon' && set.id === 'pok-era-xy' && (
+              {/* NOTE / Contact banner specifically under the 'Épée & Bouclier' set for Pokémon */}
+              {theme.id === 'pokemon' && set.id === 'pok-era-swsh' && (
                 <div className="mt-6">
                   <div className="bg-[#051923]/60 backdrop-blur-sm rounded-2xl p-6 border border-[#F5F9FC]/10 mx-0 md:mx-4">
                     <div className="max-w-7xl mx-auto text-center">
