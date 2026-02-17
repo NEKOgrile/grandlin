@@ -4,6 +4,7 @@ import useScrollRestoration from './hooks/useScrollRestoration';
 import PokemonSection from './components/PokemonSection';
 import MagicSection from './components/MagicSection';
 import OnePieceSection from './components/OnePieceSection';
+import DisneySection from './components/DisneySection';
 import LorcanaSection from './components/LorcanaSection';
 import DragonBallSection from './components/DragonBallSection';
 import LeagueSection from './components/LeagueSection';
@@ -83,6 +84,7 @@ function App() {
       <PokemonSection />
       <MagicSection />
       <OnePieceSection />
+      <DisneySection />
       <LorcanaSection />
       <DragonBallSection />
       <LeagueSection />

@@ -150,6 +150,47 @@ export const themes: ThemeConfig[] = [
   },
 
   /* =======================
+      DISNEY
+  ======================= */
+  {
+    id: 'disney',
+    name: 'Disney',
+    bgColor: 'rgb(25, 40, 80)',
+    accentColor: 'rgb(255, 160, 0)',
+    icon: 'star',
+
+    boosterSets: [
+      {
+        id: 'dis-set-01',
+        name: 'Classic Collection',
+        code: 'DIS01',
+        products: [
+          { id: 'dis-01-b1', name: 'Booster Classic Disney', category: 'Boosters', set: 'DIS01', image: 'booster_magic.png' },
+        ],
+      },
+      {
+        id: 'dis-set-02',
+        name: 'Heroes & Villains',
+        code: 'DIS02',
+        products: [
+          { id: 'dis-02-b1', name: 'Booster Heroes & Villains', category: 'Boosters', set: 'DIS02', image: 'booster_magic.png' },
+        ],
+      },
+    ],
+
+    products: [
+      { id: 'dis-pack-1', name: 'Coffret Mickey', category: 'Pack / Coffrets', image: 'coffret_magic.png' },
+      { id: 'dis-pack-2', name: 'Coffret Princess', category: 'Pack / Coffrets', image: 'coffret_magic.png' },
+
+      { id: 'dis-card-1', name: 'Mickey Collector', category: 'Cartes à l\'unité', image: 'carte-magic.png' },
+      { id: 'dis-card-2', name: 'Elsa Holo', category: 'Cartes à l\'unité', image: 'carte-magic.png' },
+
+      { id: 'dis-deck-1', name: 'Deck Aventuriers', category: 'Decks préconstruits', image: 'deck_magic.png' },
+      { id: 'dis-deck-2', name: 'Deck Villains', category: 'Decks préconstruits', image: 'deck_magic.png' },
+    ],
+  },
+
+  /* =======================
       MAGIC
   ======================= */
   {
