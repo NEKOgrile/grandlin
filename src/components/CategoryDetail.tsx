@@ -2,6 +2,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ArrowLeft, Phone, MapPin, Clock } from 'lucide-react';
 import { getThemeById, getProductsByCategory } from '../data/products';
+import ContactSection from './ContactSection';
 
 export default function CategoryDetail() {
   const { themeId, category } = useParams<{ themeId: string; category: string }>();
@@ -185,6 +186,9 @@ export default function CategoryDetail() {
           </div>
         </div>
       </section>
+
+      {themeId === 'magic' && <ContactSection />}
+
     </div>
   );
 }

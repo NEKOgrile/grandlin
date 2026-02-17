@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 export default function MagicSection() {
   const navigate = useNavigate();
   const categories = [
-    { name: 'Boosters', desc: 'Dernières extensions' },
-    { name: 'Pack / Coffrets', desc: 'Collections premium' },
-    { name: 'Cartes à l\'unité', desc: 'Cartes rares' },
-    { name: 'Decks préconstruits', desc: 'Decks complets' },
+    { name: 'Boosters', desc: 'Dernières extensions', img: 'booster_magic.png' },
+    { name: 'Pack / Coffrets', desc: 'Collections premium', img: 'coffret_magic.png' },
+    { name: 'Cartes à l\'unité', desc: 'Cartes rares', img: 'carte-magic.png' },
+    { name: 'Decks préconstruits', desc: 'Decks complets', img: 'deck_magic.png' },
   ];
 
   return (
@@ -30,8 +30,12 @@ export default function MagicSection() {
               onClick={() => navigate(`/theme/magic/${encodeURIComponent(category.name)}`)}
               className="group bg-[#1E4F6F]/40 backdrop-blur-sm rounded-xl p-4 border border-[#F5F9FC]/10 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105 cursor-pointer"
             >
-              <div className="bg-[#0F3A52]/40 rounded-lg h-32 mb-3 flex items-center justify-center">
-                <Wand2 className="w-12 h-12 text-[#26C6DA]/50 group-hover:text-[#26C6DA] transition-colors duration-300" />
+              <div className="bg-[#0F3A52]/40 rounded-lg h-40 md:h-44 mb-3 overflow-hidden relative">
+                <img
+                  src={encodeURI(import.meta.env.BASE_URL + category.img)}
+                  alt={category.name}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               <h3 className="text-lg font-semibold text-[#F5F9FC] mb-1">
                 {category.name}
