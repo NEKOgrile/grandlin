@@ -133,11 +133,11 @@ export default function BoosterSetDetail() {
             </div>
           ))}
 
-          {theme.id === 'magic' && (
+          {(theme.id === 'magic' || theme.id === 'onepiece') && (
             <div className="mt-6">
               <div className="bg-[#051923]/60 backdrop-blur-sm rounded-2xl p-6 border border-[#F5F9FC]/10 mx-0 md:mx-4">
                 <div className="max-w-7xl mx-auto text-center">
-                  <p className="text-lg text-[#F5F9FC]/80 mb-4">Si vous ne trouvez pas un booster Magic listé ici ou pour les nouveautés récentes, contactez le vendeur ou rendez-vous en boutique — nous pouvons vous renseigner et réserver des produits.</p>
+                  <p className="text-lg text-[#F5F9FC]/80 mb-4">Si vous ne trouvez pas un booster listé ici ou pour les nouveautés récentes, contactez le vendeur ou rendez-vous en boutique — nous pouvons vous renseigner et réserver des produits.</p>
 
                   <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl w-full">

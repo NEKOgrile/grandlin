@@ -5,10 +5,10 @@ import OnePieceSpawner from './OnePieceSpawner';
 export default function OnePieceSection() {
   const navigate = useNavigate();
   const categories = [
-    { name: 'Boosters', desc: 'Éditions premium' },
-    { name: 'Pack / Coffrets', desc: 'Collections exclusives' },
-    { name: 'Cartes à l\'unité', desc: 'Cartes légendaires' },
-    { name: 'Decks préconstruits', desc: 'Prêts à jouer' },
+    { name: 'Boosters', desc: 'Éditions premium', img: 'booster_onepice.png' },
+    { name: 'Pack / Coffrets', desc: 'Collections exclusives', img: 'coffret_onepice.png' },
+    { name: 'Cartes à l\'unité', desc: 'Cartes légendaires', img: 'carte_onepice.png' },
+    { name: 'Decks préconstruits', desc: 'Prêts à jouer', img: 'deck_onepice.png' },
   ];
 
   return (
@@ -32,8 +32,12 @@ export default function OnePieceSection() {
               onClick={() => navigate(`/theme/onepiece/${encodeURIComponent(category.name)}`)}
               className="group bg-[#0B3C5D]/50 backdrop-blur-sm rounded-xl p-4 border border-[#F5F9FC]/10 hover:border-[#26C6DA] transition-all duration-500 hover:scale-105 cursor-pointer"
             >
-              <div className="bg-[#051923]/60 rounded-lg h-32 mb-3 flex items-center justify-center">
-                <Anchor className="w-12 h-12 text-[#26C6DA]/60 group-hover:text-[#26C6DA] transition-colors duration-300" />
+              <div className="bg-[#051923]/60 rounded-lg h-40 md:h-44 mb-3 overflow-hidden relative">
+                <img
+                  src={encodeURI(import.meta.env.BASE_URL + category.img)}
+                  alt={category.name}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               <h3 className="text-lg font-semibold text-[#F5F9FC] mb-1">
                 {category.name}

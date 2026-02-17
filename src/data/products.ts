@@ -116,7 +116,7 @@ export const themes: ThemeConfig[] = [
         name: 'Romance Dawn',
         code: 'OP01',
         products: [
-          { id: 'op-op01-b1', name: 'Booster Romance Dawn', category: 'Boosters', set: 'OP01' },
+          { id: 'op-op01-b1', name: 'Booster Romance Dawn', category: 'Boosters', set: 'OP01', image: 'booster_onepice.png' },
         ],
       },
       {
@@ -124,7 +124,7 @@ export const themes: ThemeConfig[] = [
         name: 'Paramount War',
         code: 'OP02',
         products: [
-          { id: 'op-op02-b1', name: 'Booster Paramount War', category: 'Boosters', set: 'OP02' },
+          { id: 'op-op02-b1', name: 'Booster Paramount War', category: 'Boosters', set: 'OP02', image: 'booster_onepice.png' },
         ],
       },
       {
@@ -132,20 +132,20 @@ export const themes: ThemeConfig[] = [
         name: 'Awakening of the New Era',
         code: 'OP05',
         products: [
-          { id: 'op-op05-b1', name: 'Booster Awakening of the New Era', category: 'Boosters', set: 'OP05' },
+          { id: 'op-op05-b1', name: 'Booster Awakening of the New Era', category: 'Boosters', set: 'OP05', image: 'booster_onepice.png' },
         ],
       },
     ],
 
     products: [
-      { id: 'op-pack-1', name: 'Coffret Luffy', category: 'Pack / Coffrets' },
-      { id: 'op-pack-2', name: 'Coffret Law', category: 'Pack / Coffrets' },
+      { id: 'op-pack-1', name: 'Coffret Luffy', category: 'Pack / Coffrets', image: 'coffret_onepice.png' },
+      { id: 'op-pack-2', name: 'Coffret Law', category: 'Pack / Coffrets', image: 'coffret_onepice.png' },
 
-      { id: 'op-card-1', name: 'Monkey D. Luffy Gear 5', category: 'Cartes à l\'unité' },
-      { id: 'op-card-2', name: 'Trafalgar Law Alt Art', category: 'Cartes à l\'unité' },
+      { id: 'op-card-1', name: 'Monkey D. Luffy Gear 5', category: 'Cartes à l\'unité', image: 'carte_onepice.png' },
+      { id: 'op-card-2', name: 'Trafalgar Law Alt Art', category: 'Cartes à l\'unité', image: 'carte_onepice.png' },
 
-      { id: 'op-deck-1', name: 'Deck Pirate Rouge', category: 'Decks préconstruits' },
-      { id: 'op-deck-2', name: 'Deck Marine', category: 'Decks préconstruits' },
+      { id: 'op-deck-1', name: 'Deck Pirate Rouge', category: 'Decks préconstruits', image: 'deck_onepice.png' },
+      { id: 'op-deck-2', name: 'Deck Marine', category: 'Decks préconstruits', image: 'deck_onepice.png' },
     ],
   },
 
