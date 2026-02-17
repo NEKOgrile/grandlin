@@ -6,10 +6,10 @@ export default function PokemonSection() {
   const navigate = useNavigate();
 
   const categories = [
-    { name: 'Boosters', desc: 'Évolution Écarlate & Violet' },
-    { name: 'Pack / Coffrets', desc: 'Collections exclusives' },
-    { name: 'Cartes à l\'unité', desc: 'Rares et ultra-rares' },
-    { name: 'Decks préconstruits', desc: 'Prêts à jouer' },
+    { name: 'Boosters', desc: 'Évolution Écarlate & Violet', img: 'images/products/pokemon/booster-pack.svg' },
+    { name: 'Pack / Coffrets', desc: 'Collections exclusives', img: 'images/products/pokemon/coffret.svg' },
+    { name: 'Cartes à l\'unité', desc: 'Rares et ultra-rares', img: 'images/products/pokemon/single-card.svg' },
+    { name: 'Decks préconstruits', desc: 'Prêts à jouer', img: 'images/products/pokemon/deck.svg' },
   ];
 
   return (
@@ -33,8 +33,12 @@ export default function PokemonSection() {
               onClick={() => navigate(`/theme/pokemon/${encodeURIComponent(category.name)}`, { state: { scrollToTop: true } })}
               className="group bg-[#1E81B0]/30 backdrop-blur-sm rounded-2xl p-4 border border-[#F5F9FC]/20 hover:border-[#4DD0E1] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#4DD0E1]/20 cursor-pointer"
             >
-              <div className="bg-[#0B3C5D]/50 rounded-xl h-32 mb-3 flex items-center justify-center">
-                <Sparkles className="w-12 h-12 text-[#4DD0E1]/70 group-hover:text-[#4DD0E1] transition-colors duration-300" />
+              <div className="bg-[#0B3C5D]/50 rounded-xl h-32 mb-3 flex items-center justify-center overflow-hidden">
+                <img
+                  src={encodeURI(import.meta.env.BASE_URL + category.img)}
+                  alt={category.name}
+                  className="w-20 h-20 object-contain group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               <h3 className="text-lg font-semibold text-[#F5F9FC] mb-1">
                 {category.name}
