@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface Baudroie {
   id: string;
@@ -8,7 +8,7 @@ interface Baudroie {
 
 export default function BaudroieSpawner() {
   const [baudroie, setBaudroie] = useState<Baudroie | null>(null);
-  const timeoutRefsRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
+  const timeoutRefsRef = useRef<Map<string, number>>(new Map());
 
   const DURATION = 12; // Plus rapide pour poursuivre
   const MIN_TOP_PERCENT = 5;
@@ -28,18 +28,18 @@ export default function BaudroieSpawner() {
   };
 
   // Remplacer Baudroie par une nouvelle
-  const replaceBaudroie = (oldId?: string) => {
+  const replaceBaudroie = useCallback((oldId?: string) => {
     if (oldId) {
       const oldTimeout = timeoutRefsRef.current.get(oldId);
       if (oldTimeout) clearTimeout(oldTimeout);
       timeoutRefsRef.current.delete(oldId);
     }
 
-    const spawnTimeout = setTimeout(() => {
+    const spawnTimeout = window.setTimeout(() => {
       const newBaudroie = generateSingleBaudroie();
       setBaudroie(newBaudroie);
       
-      const newTimeout = setTimeout(() => {
+      const newTimeout = window.setTimeout(() => {
         replaceBaudroie(newBaudroie.id);
       }, (DURATION + 0.5) * 1000);
       
@@ -47,17 +47,18 @@ export default function BaudroieSpawner() {
     }, oldId ? 0 : SPAWN_DELAY);
     
     timeoutRefsRef.current.set(`spawn-${Date.now()}`, spawnTimeout);
-  };
+  }, []);
 
   // Générer la première Baudroie au mount
   useEffect(() => {
     replaceBaudroie();
+    const timeoutsSnapshot = timeoutRefsRef.current;
 
     return () => {
-      timeoutRefsRef.current.forEach(timeout => clearTimeout(timeout));
-      timeoutRefsRef.current.clear();
+      timeoutsSnapshot.forEach(timeout => clearTimeout(timeout));
+      timeoutsSnapshot.clear();
     };
-  }, []);
+  }, [replaceBaudroie]);
 
   if (!baudroie) return null;
 

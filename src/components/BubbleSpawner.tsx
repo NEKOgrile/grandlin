@@ -11,34 +11,19 @@ interface Bubble {
 
 export default function BubbleSpawner() {
   const [bubbleList, setBubbleList] = useState<Bubble[]>([]);
-  const [scrollDepth, setScrollDepth] = useState(0);
-  const intervalRef = useRef<NodeJS.Timeout>();
-
-  // Track scroll depth
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const depth = (scrollPosition / maxScroll) * 100;
-      setScrollDepth(depth);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const intervalRef = useRef<number | null>(null);
 
   // Spawn bubbles
   useEffect(() => {
     const spawnBubble = () => {
       // Calculer la position maximale (50% du document)
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const maxSpawnPosition = (maxScroll * 0.5) / window.innerHeight; // En % de la hauteur visible
 
       // Ne spawner que jusqu'à 50% de profondeur
       if (window.scrollY > maxScroll * 0.5) {
         const nextDelay = 300 + Math.random() * 700;
         if (intervalRef.current) clearTimeout(intervalRef.current);
-        intervalRef.current = setTimeout(spawnBubble, nextDelay) as any;
+        intervalRef.current = window.setTimeout(spawnBubble, nextDelay);
         return;
       }
 
@@ -47,7 +32,7 @@ export default function BubbleSpawner() {
         if (currentList.length >= 20) {
           const nextDelay = 300 + Math.random() * 700;
           if (intervalRef.current) clearTimeout(intervalRef.current);
-          intervalRef.current = setTimeout(spawnBubble, nextDelay) as any;
+          intervalRef.current = window.setTimeout(spawnBubble, nextDelay);
           return currentList;
         }
 
@@ -80,7 +65,7 @@ export default function BubbleSpawner() {
 
         const nextDelay = 300 + Math.random() * 700;
         if (intervalRef.current) clearTimeout(intervalRef.current);
-        intervalRef.current = setTimeout(spawnBubble, nextDelay) as any;
+        intervalRef.current = window.setTimeout(spawnBubble, nextDelay);
 
         return [...currentList, newBubble];
       });
@@ -88,7 +73,7 @@ export default function BubbleSpawner() {
 
     const initialDelay = 300 + Math.random() * 700;
     if (intervalRef.current) clearTimeout(intervalRef.current);
-    intervalRef.current = setTimeout(spawnBubble, initialDelay) as any;
+    intervalRef.current = window.setTimeout(spawnBubble, initialDelay);
 
     return () => {
       if (intervalRef.current) clearTimeout(intervalRef.current);

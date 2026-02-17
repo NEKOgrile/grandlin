@@ -18,7 +18,7 @@ if (typeof window !== 'undefined') {
       // use location.replace to force a server request for the canonical path
       window.location.replace('/grandlin/' + search + hash);
     }
-  } catch {}
+  } catch { /* ignore location mutation errors */ }
 }
 
 createRoot(document.getElementById('root')!).render(

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface Magikarp {
   id: string;
@@ -11,7 +11,7 @@ interface Magikarp {
 
 export default function MagikarpSpawner() {
   const [magikarpList, setMagikarpList] = useState<Magikarp[]>([]);
-  const timeoutRefsRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
+  const timeoutRefsRef = useRef<Map<string, number>>(new Map());
 
   // Générer une seule Magikarp aléatoire
   const generateSingleMagikarp = (): Magikarp => {
@@ -35,7 +35,7 @@ export default function MagikarpSpawner() {
   };
 
   // Remplacer une Magikarp par une nouvelle
-  const replaceMagikarp = (oldId: string) => {
+  const replaceMagikarp = useCallback((oldId: string) => {
     // Nettoyer le timeout de l'ancienne
     const oldTimeout = timeoutRefsRef.current.get(oldId);
     if (oldTimeout) clearTimeout(oldTimeout);
@@ -43,50 +43,35 @@ export default function MagikarpSpawner() {
 
     const newMagikarp = generateSingleMagikarp();
 
-    console.log(`
-╔════════════════════════════════════════╗
-║ ➕ MAGIKARP REMPLACÉE                  ║
-╠════════════════════════════════════════╣
-║ Position (Y): ${newMagikarp.top.toFixed(2)}%
-║ Zone: ${newMagikarp.top < 33.33 ? '🟦 HAUT' : newMagikarp.top < 66.66 ? '🟩 MILIEU' : '🟥 BAS'}
-║ Direction: ${newMagikarp.direction === 'left' ? '⬅️ GAUCHE' : '➡️ DROITE'}
-║ Type: ${newMagikarp.isShiny ? '✨ SHINY' : '🔴 NORMAL'}
-║ Scale: ${newMagikarp.scale.toFixed(2)}x
-║ Vitesse: ${newMagikarp.duration.toFixed(1)}s
-╚════════════════════════════════════════╝
-    `);
-
     setMagikarpList(prev => prev.map(m => m.id === oldId ? newMagikarp : m));
     
     // Timeout fallback
-    const newTimeout = setTimeout(() => {
+    const newTimeout = window.setTimeout(() => {
       replaceMagikarp(newMagikarp.id);
     }, (newMagikarp.duration + 0.5) * 1000);
     
     timeoutRefsRef.current.set(newMagikarp.id, newTimeout);
-  };
+  }, []);
 
   // Générer les 10 Magikarp au mount
   useEffect(() => {
     const initialList = Array.from({ length: 10 }, () => generateSingleMagikarp());
     setMagikarpList(initialList);
+    const timeoutsSnapshot = timeoutRefsRef.current;
 
     // Créer les timeouts fallback pour chaque
     initialList.forEach(magikarp => {
-      const timeout = setTimeout(() => {
+      const timeout = window.setTimeout(() => {
         replaceMagikarp(magikarp.id);
       }, (magikarp.duration + 0.5) * 1000);
-      timeoutRefsRef.current.set(magikarp.id, timeout);
+      timeoutsSnapshot.set(magikarp.id, timeout);
     });
 
-    console.log('🐟 10 Magikarp générées au démarrage');
-    
     return () => {
-      timeoutRefsRef.current.forEach(timeout => clearTimeout(timeout));
-      timeoutRefsRef.current.clear();
+      timeoutsSnapshot.forEach(timeout => clearTimeout(timeout));
+      timeoutsSnapshot.clear();
     };
-  }, []);
-
+  }, [replaceMagikarp]);
   const handleAnimationEnd = (id: string) => {
     replaceMagikarp(id);
   };
@@ -111,8 +96,6 @@ export default function MagikarpSpawner() {
           style={{
             position: 'absolute',
             top: magikarp.top + '%',
-            transform: `translateY(-50%) scale(${magikarp.scale})`,
-            transformOrigin: 'left center',
             animationDuration: magikarp.duration + 's',
           }}
           onAnimationEnd={() => handleAnimationEnd(magikarp.id)}
@@ -124,7 +107,8 @@ export default function MagikarpSpawner() {
               height: '64px',
               width: 'auto',
               display: 'block',
-              transform: magikarp.direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)',
+              transform: `translateY(-50%) scale(${magikarp.scale}) ${magikarp.direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)'}`,
+              transformOrigin: 'left center',
               filter: magikarp.isShiny ? 'brightness(1.3)' : 'brightness(1)',
             }}
           />

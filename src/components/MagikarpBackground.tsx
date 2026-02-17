@@ -13,6 +13,7 @@ export default function MagikarpBackground() {
   const [magikarpList, setMagikarpList] = useState<MagikarpItem[]>([]);
 
   useEffect(() => {
+    const timers: number[] = [];
     const addMagikarp = () => {
       const newMagikarp: MagikarpItem = {
         id: Date.now() + Math.random().toString(),
@@ -25,15 +26,18 @@ export default function MagikarpBackground() {
 
       setMagikarpList((prev) => [...prev, newMagikarp]);
 
-      const timer = setTimeout(() => {
+      const timer = window.setTimeout(() => {
         setMagikarpList((prev) => prev.filter((m) => m.id !== newMagikarp.id));
       }, newMagikarp.duration * 1000);
 
-      return () => clearTimeout(timer);
+      timers.push(timer);
     };
 
-    const interval = setInterval(addMagikarp, 333);
-    return () => clearInterval(interval);
+    const interval = window.setInterval(addMagikarp, 333);
+    return () => {
+      clearInterval(interval);
+      timers.forEach(t => clearTimeout(t));
+    };
   }, []);
 
   const getDepthStyles = (depth: number) => {
@@ -67,7 +71,6 @@ export default function MagikarpBackground() {
               top: magikarp.top + '%',
               zIndex: depthStyle.zIndex,
               opacity: depthStyle.opacity,
-              transform: `scale(${depthStyle.scale})`,
               animationDuration: magikarp.duration + 's',
               whiteSpace: 'nowrap',
             }}
@@ -77,6 +80,7 @@ export default function MagikarpBackground() {
               alt="Magikarp"
               className="h-20 drop-shadow-lg inline-block"
               style={{
+                transform: `scale(${depthStyle.scale})`,
                 filter: magikarp.isShiny ? 'brightness(1.2)' : 'brightness(1)',
               }}
             />

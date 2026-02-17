@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface Nemo {
   id: string;
@@ -8,7 +8,7 @@ interface Nemo {
 
 export default function NemoSpawner() {
   const [nemo, setNemo] = useState<Nemo | null>(null);
-  const timeoutRefsRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
+  const timeoutRefsRef = useRef<Map<string, number>>(new Map());
 
   const DURATION = 15; // Vitesse constante
   const MIN_TOP_PERCENT = 10;
@@ -27,7 +27,7 @@ export default function NemoSpawner() {
   };
 
   // Remplacer Nemo par un nouveau
-  const replaceNemo = (oldId?: string) => {
+  const replaceNemo = useCallback((oldId?: string) => {
     if (oldId) {
       const oldTimeout = timeoutRefsRef.current.get(oldId);
       if (oldTimeout) clearTimeout(oldTimeout);
@@ -37,22 +37,23 @@ export default function NemoSpawner() {
     const newNemo = generateSingleNemo();
     setNemo(newNemo);
     
-    const newTimeout = setTimeout(() => {
+    const newTimeout = window.setTimeout(() => {
       replaceNemo(newNemo.id);
     }, (DURATION + 0.5) * 1000);
     
     timeoutRefsRef.current.set(newNemo.id, newTimeout);
-  };
+  }, []);
 
   // Générer le premier Nemo au mount
   useEffect(() => {
     replaceNemo();
+    const timeoutsSnapshot = timeoutRefsRef.current;
 
     return () => {
-      timeoutRefsRef.current.forEach(timeout => clearTimeout(timeout));
-      timeoutRefsRef.current.clear();
+      timeoutsSnapshot.forEach(timeout => clearTimeout(timeout));
+      timeoutsSnapshot.clear();
     };
-  }, []);
+  }, [replaceNemo]);
 
   if (!nemo) return null;
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface Submarine {
   id: string;
@@ -25,7 +25,7 @@ export default function OnePieceSpawner() {
   const MIN_TOP_PERCENT = -8;
   const MAX_TOP_PERCENT = 108;
 
-  const generateSingleSub = (): Submarine => {
+  const generateSingleSub = useCallback((): Submarine => {
     const top = MIN_TOP_PERCENT + Math.random() * (MAX_TOP_PERCENT - MIN_TOP_PERCENT);
     const direction = Math.random() > 0.5 ? 'left' : 'right';
 
@@ -34,7 +34,7 @@ export default function OnePieceSpawner() {
       top,
       direction,
     };
-  };
+  }, [MIN_TOP_PERCENT, MAX_TOP_PERCENT]);
 
   const clearBubbleInterval = () => {
     if (bubbleIntervalRef.current) {
@@ -46,7 +46,7 @@ export default function OnePieceSpawner() {
     setBubbles([]);
   };
 
-  const spawnBubble = (direction: 'left' | 'right') => {
+  const spawnBubble = () => {
     // Engine position relative to the submarine image (natural orientation).
     // Tune baseEngine toward the rear of the sprite so bubbles come from the pipes.
     const baseEngine = 94; // tuned to the very rear of the sprite
@@ -67,7 +67,7 @@ export default function OnePieceSpawner() {
     bubbleTimeoutsRef.current.set(id, to as unknown as number);
   };
 
-  const replaceSub = (oldId?: string) => {
+  const replaceSub = useCallback(() => {
     if (replaceTimeoutRef.current) {
       clearTimeout(replaceTimeoutRef.current);
       replaceTimeoutRef.current = null;
@@ -80,14 +80,14 @@ export default function OnePieceSpawner() {
 
     // start bubble spawning for this submarine
     bubbleIntervalRef.current = window.setInterval(() => {
-      spawnBubble(newSub.direction);
+      spawnBubble();
     }, 600);
 
     // Schedule replacement only after the submarine's animation completes
     replaceTimeoutRef.current = window.setTimeout(() => {
-      replaceSub(newSub.id);
+      replaceSub();
     }, (DURATION + 0.5) * 1000) as unknown as number;
-  };
+  }, [generateSingleSub]);
 
   useEffect(() => {
     replaceSub();
@@ -96,7 +96,7 @@ export default function OnePieceSpawner() {
       if (replaceTimeoutRef.current) clearTimeout(replaceTimeoutRef.current as number);
       clearBubbleInterval();
     };
-  }, []);
+  }, [replaceSub]);
 
   if (!sub) return null;
 

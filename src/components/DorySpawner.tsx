@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface Dory {
   id: string;
@@ -8,12 +8,11 @@ interface Dory {
 
 export default function DorySpawner() {
   const [dory, setDory] = useState<Dory | null>(null);
-  const timeoutRefsRef = useRef<Map<string, NodeJS.Timeout>>(new Map());
+  const timeoutRefsRef = useRef<Map<string, number>>(new Map());
 
   const DURATION = 15; // Vitesse constante
   const MIN_TOP_PERCENT = 5;
   const MAX_TOP_PERCENT = 85;
-  const DELAY_RANGE = [0, 2000]; // Délai aléatoire de 0-2s après Nemo
 
   // Générer un seul Dory aléatoire avec des limites
   const generateSingleDory = (): Dory => {
@@ -28,20 +27,22 @@ export default function DorySpawner() {
   };
 
   // Remplacer Dory par une nouvelle
-  const replaceDory = (oldId?: string) => {
+  const replaceDory = useCallback((oldId?: string) => {
     if (oldId) {
       const oldTimeout = timeoutRefsRef.current.get(oldId);
       if (oldTimeout) clearTimeout(oldTimeout);
       timeoutRefsRef.current.delete(oldId);
     }
 
-    const randomDelay = DELAY_RANGE[0] + Math.random() * (DELAY_RANGE[1] - DELAY_RANGE[0]);
+    const minDelay = 0;
+    const maxDelay = 2000;
+    const randomDelay = minDelay + Math.random() * (maxDelay - minDelay);
     
-    const spawnTimeout = setTimeout(() => {
+    const spawnTimeout = window.setTimeout(() => {
       const newDory = generateSingleDory();
       setDory(newDory);
       
-      const newTimeout = setTimeout(() => {
+      const newTimeout = window.setTimeout(() => {
         replaceDory(newDory.id);
       }, (DURATION + 0.5) * 1000);
       
@@ -49,17 +50,18 @@ export default function DorySpawner() {
     }, randomDelay);
     
     timeoutRefsRef.current.set(`spawn-${Date.now()}`, spawnTimeout);
-  };
+  }, []);
 
   // Générer le premier Dory au mount
   useEffect(() => {
     replaceDory();
+    const timeoutsSnapshot = timeoutRefsRef.current;
 
     return () => {
-      timeoutRefsRef.current.forEach(timeout => clearTimeout(timeout));
-      timeoutRefsRef.current.clear();
+      timeoutsSnapshot.forEach(timeout => clearTimeout(timeout));
+      timeoutsSnapshot.clear();
     };
-  }, []);
+  }, [replaceDory]);
 
   if (!dory) return null;
 

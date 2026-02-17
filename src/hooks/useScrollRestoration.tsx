@@ -20,7 +20,7 @@ export default function useScrollRestoration() {
       if (href.startsWith('/') || href.startsWith(window.location.origin)) {
         try {
           sessionStorage.setItem('scroll:' + window.location.pathname, String(window.scrollY || 0));
-        } catch {}
+        } catch { /* ignore sessionStorage errors */ }
       }
     };
 
@@ -41,7 +41,7 @@ export default function useScrollRestoration() {
           setTimeout(() => window.scrollTo({ top: y, left: 0, behavior: 'auto' }), 10);
           return;
         }
-      } catch {}
+      } catch { /* ignore sessionStorage read error */ }
       // if no saved pos, don't change (let browser handle) or fallback to top
       return;
     }

@@ -19,7 +19,7 @@ export default defineConfig({
               res.end();
               return;
             }
-          } catch (e) {}
+          } catch { /* ignore dev-server url parse errors */ }
           next();
         });
       },
